@@ -262,7 +262,7 @@ int main(int argc, char** argv){
 		});
 		
 		WebsiteFramework::addGetHandleMap("/", createMainPage);
-		WebsiteFramework::addPostHandleMap("/createAccount", createCreateAccountPageHandle);
+		WebsiteFramework::addGetHandleMap("/createAccount", createCreateAccountPageHandle);
 		WebsiteFramework::addGetHandleMap("/login", createLoginPageHandle);
 		WebsiteFramework::addGetHandleMap("/newThread", createNewThreadPageHandle);
 		WebsiteFramework::addGetHandleMap("/thread/*", createThreadPage);
