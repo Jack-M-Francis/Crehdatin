@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Crehdatin" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Crehdatin" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add library="../WebsiteFramework/bin/Debug/libWebsiteFramework.a" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Crehdatin" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="../WebsiteFramework/bin/Release/libWebsiteFramework.a" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add directory="/home/daniel/Projects/codeblocks/" />
+		</Compiler>
+		<Linker>
+			<Add option="-lfcgi" />
+			<Add option="-lfcgi++" />
+			<Add option="-lpthread" />
+			<Add option="-lboost_system" />
+			<Add option="-lboost_filesystem" />
+			<Add option="-lcrypto++" />
+			<Add option="-lcgicc" />
+			<Add option="-lmysqlcppconn" />
+			<Add option="-lcurl" />
+			<Add option="-lcurlpp" />
+		</Linker>
+		<Unit filename="Config.cpp" />
+		<Unit filename="Config.h" />
+		<Unit filename="Cryptography.cpp" />
+		<Unit filename="Cryptography.h" />
+		<Unit filename="Database.cpp" />
+		<Unit filename="Database.h" />
+		<Unit filename="HandleCreateAccount.cpp" />
+		<Unit filename="HandleCreateAccount.h" />
+		<Unit filename="HandleDeleteComment.cpp" />
+		<Unit filename="HandleDeleteComment.h" />
+		<Unit filename="HandleDeleteThread.cpp" />
+		<Unit filename="HandleDeleteThread.h" />
+		<Unit filename="HandleDismissReports.cpp" />
+		<Unit filename="HandleDismissReports.h" />
+		<Unit filename="HandleLogin.cpp" />
+		<Unit filename="HandleLogin.h" />
+		<Unit filename="HandleLogout.cpp" />
+		<Unit filename="HandleLogout.h" />
+		<Unit filename="HandleNewComment.cpp" />
+		<Unit filename="HandleNewComment.h" />
+		<Unit filename="HandleNewThread.cpp" />
+		<Unit filename="HandleNewThread.h" />
+		<Unit filename="HandleReportComment.cpp" />
+		<Unit filename="HandleReportComment.h" />
+		<Unit filename="HandleReportThread.cpp" />
+		<Unit filename="HandleReportThread.h" />
+		<Unit filename="InputHandler.cpp" />
+		<Unit filename="InputHandler.h" />
+		<Unit filename="LoginPage.cpp" />
+		<Unit filename="LoginPage.h" />
+		<Unit filename="MainPage.cpp" />
+		<Unit filename="MainPage.h" />
+		<Unit filename="NewThreadPage.cpp" />
+		<Unit filename="NewThreadPage.h" />
+		<Unit filename="PageFooter.cpp" />
+		<Unit filename="PageFooter.h" />
+		<Unit filename="PageHeader.cpp" />
+		<Unit filename="PageHeader.h" />
+		<Unit filename="Recaptcha.cpp" />
+		<Unit filename="Recaptcha.h" />
+		<Unit filename="ReportsPage.cpp" />
+		<Unit filename="ReportsPage.h" />
+		<Unit filename="RequestData.h" />
+		<Unit filename="Response.cpp" />
+		<Unit filename="Response.h" />
+		<Unit filename="StringHelper.h" />
+		<Unit filename="ThreadPage.cpp" />
+		<Unit filename="ThreadPage.h" />
+		<Unit filename="UserData.cpp" />
+		<Unit filename="UserData.h" />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<lib_finder disable_auto="1" />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
