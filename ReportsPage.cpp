@@ -5,7 +5,7 @@ void createReportsPage(FcgiData* fcgi, std::vector<std::string> parameters, void
 	
 	if(!Config::hasDeletePermissions(data->userPosition)){
 		createPageHeader(fcgi, data);
-		fcgi->out << "<div class='errorText'>You Do Not Have The Correct Permissions To View This Page</div>";
+		fcgi->out << "<div class='errorText'>You do not have the correct permissions to view this page.</div>";
 		createPageFooter(fcgi, data);
 		return;
 	}
@@ -55,7 +55,7 @@ void createReportsPage(FcgiData* fcgi, std::vector<std::string> parameters, void
 		}while(res->next());
 	}
 	else{
-		fcgi->out << "There are no Pending Reports";
+		fcgi->out << "There are no pending reports.";
 	}
 	
 	delete res;
