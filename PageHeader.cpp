@@ -8,7 +8,7 @@ void createPageHeader(FcgiData* fcgi, RequestData* data){
 	fcgi->out << 
 	"<html>"
 	"<head>"
-	"<link rel='stylesheet' type='text/css' href='https://" << Config::getDomain() << "/static/style.css'>"
+	"<link rel='stylesheet' type='text/css' href='https://" << Config::getDomain() << "/static/" << data->cssTheme << ".css'>"
 	"<meta charset='UTF-8'>"
 	"<title>"
 	"Creh-Datin"
@@ -17,11 +17,6 @@ void createPageHeader(FcgiData* fcgi, RequestData* data){
 	"</head>"
 	"<body>"
 	"<header>"
-	"<div id='headerText'>"
-	"<a href='https://" << Config::getDomain() << "/'>"
-	"Creh-Datin"
-	"</a>"
-	"</div>"
 	"<div id='toolbar'>";
 	if(data->userId == -1){
 		fcgi->out << 
@@ -37,6 +32,9 @@ void createPageHeader(FcgiData* fcgi, RequestData* data){
 	}
 	else{
 		fcgi->out << 
+		"<div class='toolbarEntry'>"
+		"<a href='https://" << Config::getDomain() << "/settings'>Settings</a>"
+		"</div>"
 		"<form method='post' action='https://" << Config::getDomain() << "/logout' class='logout'>"
 		"<input type='hidden' name='authToken' value='" << data->authToken << "'>"
 		"<button type='submit' name='submit_param' class='logout-button'>"
@@ -57,6 +55,11 @@ void createPageHeader(FcgiData* fcgi, RequestData* data){
 	}
 	fcgi->out << 
 	"</div>"
+	"<div id='headerText'>"
+	"<a href='https://" << Config::getDomain() << "/'>"
+	"Creh-Datin"
+	"</a>"
+	"</div>"
 	"</header>"
-	"<div id='content'>";
+	"<main>";
 }

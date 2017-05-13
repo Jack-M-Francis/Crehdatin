@@ -2,7 +2,7 @@
 
 void createPageFooter(FcgiData* fcgi, RequestData* data){
 	fcgi->out << 
-	"</div>"
+	"</main>"
 	"</body>"
 	"</html>";
 }

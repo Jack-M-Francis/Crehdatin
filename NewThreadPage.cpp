@@ -23,7 +23,7 @@ void createNewThreadPage(FcgiData* fcgi, RequestData* data, std::string error){
 	}
 	fcgi->out <<
 	"<button type='submit' name='submit_param'>"
-	"Submit"
+	"Create Thread"
 	"</button>"
 	"</form>";
 	

@@ -8,6 +8,13 @@ void handleCreateAccount(FcgiData* fcgi, std::vector<std::string> parameters, vo
 		return;
 	}
 	
+	std::string authToken;
+	if(getPostValue(fcgi->cgi, authToken, "authToken", Config::getUniqueTokenLength(), InputFlag::AllowStrictOnly) != InputError::NoError 
+		|| authToken != data->authToken){
+		createLoginPage(fcgi, data, "Invalid Authentication Token", "");
+		return;
+	}
+	
 	std::string captcha;
 	if(getPostValue(fcgi->cgi, captcha, "g-recaptcha-response", Config::getUniqueTokenLength(), InputFlag::AllowStrictOnly) != InputError::NoError 
 		|| !validateRecaptcha(captcha, fcgi->env->getRemoteAddr())){
@@ -65,13 +72,6 @@ void handleCreateAccount(FcgiData* fcgi, std::vector<std::string> parameters, vo
 	
 	if(password != repeatPassword){
 		createLoginPage(fcgi, data, "", "Passwords Do Not Match");
-		return;
-	}
-	
-	std::string authToken;
-	if(getPostValue(fcgi->cgi, authToken, "authToken", Config::getUniqueTokenLength(), InputFlag::AllowStrictOnly) != InputError::NoError 
-		|| authToken != data->authToken){
-		createLoginPage(fcgi, data, "Invalid Authentication Token", "");
 		return;
 	}
 	

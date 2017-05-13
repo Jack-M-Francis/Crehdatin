@@ -22,6 +22,7 @@
 
 #include "MainPage.h"
 #include "LoginPage.h"
+#include "SettingsPage.h"
 #include "NewThreadPage.h"
 #include "ThreadPage.h"
 
@@ -30,6 +31,7 @@
 #include "HandleLogout.h"
 #include "HandleNewThread.h"
 #include "HandleNewComment.h"
+#include "HandleSetCssTheme.h"
 
 #include "HandleReportThread.h"
 #include "HandleDeleteThread.h"
@@ -112,6 +114,7 @@ int main(int argc, char** argv){
 			data->authToken = "";
 			data->shownId = "";
 			data->userPosition = "";
+			data->cssTheme = "dark";
 			data->blocked = false;
 			data->lastPostTime = 0;
 			
@@ -147,7 +150,7 @@ int main(int argc, char** argv){
 							data->userId = res->getInt64("userId");
 							
 							sql::PreparedStatement* prepStmtB = data->con->prepareStatement("SELECT " 
-							"userName, userPosition, UNIX_TIMESTAMP(lastPostTime) "
+							"userName, userPosition, cssTheme, UNIX_TIMESTAMP(lastPostTime) "
 							"FROM users "
 							"WHERE id = ?");
 							
@@ -162,6 +165,10 @@ int main(int argc, char** argv){
 								
 								if(resB->isNull("userPosition") == false){
 									data->userPosition = resB->getString("userPosition");
+								}
+								
+								if(resB->isNull("cssTheme") == false){
+									data->cssTheme = resB->getString("cssTheme");
 								}
 								
 								if(resB->isNull("UNIX_TIMESTAMP(lastPostTime)") == false){
@@ -264,6 +271,7 @@ int main(int argc, char** argv){
 		WebsiteFramework::addGetHandleMap("/", createMainPage);
 		WebsiteFramework::addGetHandleMap("/createAccount", createCreateAccountPageHandle);
 		WebsiteFramework::addGetHandleMap("/login", createLoginPageHandle);
+		WebsiteFramework::addGetHandleMap("/settings", createSettingsPageHandle);
 		WebsiteFramework::addGetHandleMap("/newThread", createNewThreadPageHandle);
 		WebsiteFramework::addGetHandleMap("/thread/*", createThreadPage);
 		WebsiteFramework::addGetHandleMap("/reports", createReportsPage);
@@ -271,6 +279,7 @@ int main(int argc, char** argv){
 		WebsiteFramework::addPostHandleMap("/createAccount", handleCreateAccount);
 		WebsiteFramework::addPostHandleMap("/login", handleLogin);
 		WebsiteFramework::addPostHandleMap("/logout", handleLogout);
+		WebsiteFramework::addPostHandleMap("/setCssTheme", handleSetCssTheme);
 		WebsiteFramework::addPostHandleMap("/newThread", handleNewThread);
 		WebsiteFramework::addPostHandleMap("/thread/*/newComment", handleNewComment);
 		
@@ -281,8 +290,6 @@ int main(int argc, char** argv){
 		WebsiteFramework::addPostHandleMap("/dismissReports", handleDismissReports);
 		
 		WebsiteFramework::run(":8222", std::thread::hardware_concurrency());
-		
-		//TODO: make is to thread titles are inside of a different div so ZALGO text doesn't overflow as much
 		
 		std::cout << "Shutting down...\n";
 	}

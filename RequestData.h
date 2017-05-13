@@ -20,6 +20,7 @@ struct RequestData{
 	std::string authToken;
 	std::string shownId;
 	std::string userPosition;
+	std::string cssTheme;
 	bool blocked;
 	int64_t lastPostTime;
 };

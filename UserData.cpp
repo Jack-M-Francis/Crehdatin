@@ -48,7 +48,7 @@ std::string getFormattedPosterString(sql::Connection* con, std::string anonId, i
 			return "user: <div class='senateTag'>" + escapeHtml(userName) + "[S]</div>";
 		}
 		else if(userPosition == "admin"){
-			return "user:  <div class='adminTag'>" + escapeHtml(userName) "+[A]</div>";
+			return "user:  <div class='adminTag'>" + escapeHtml(userName) + "[A]</div>";
 		}
 		else if(userPosition == "moderator"){
 			return "user: <div class='moderatorTag'>" + escapeHtml(userName) + "[M]</div>";

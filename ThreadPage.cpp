@@ -37,7 +37,7 @@ void createThreadPage(FcgiData* fcgi, std::vector<std::string> parameters, void*
 		formatUserPostBody(body);
 		
 		fcgi->out << "<div class='thread'><div class='threadTitle'>"
-			<< escapeHtml(title) << "</div><br><div class='extraPostInfo'>";
+			<< escapeHtml(title) << "</div><div class='extraPostInfo'>";
 		createReplyMenu(fcgi, data, threadId);
 		createReportMenu(fcgi, data, threadId);
 		fcgi->out << getFormattedPosterString(data->con, anonId, userId) << 
@@ -109,8 +109,8 @@ void createCommentLine(FcgiData* fcgi, RequestData* data, std::string& threadId,
 		createReportMenu(fcgi, data, threadId, commentId);
 			
 		fcgi->out << getFormattedPosterString(data->con, anonId, userId)
-			<< "<div class='commentText'>"
-			<< body << "</div></div>";
+			<< "</div><div class='commentText'>"
+			<< body << "</div>";
 				
 		createCommentLine(fcgi, data, threadId, layer + 1, commentId);
 		
@@ -293,7 +293,7 @@ void createReplyMenu(FcgiData* fcgi, RequestData* data, std::string& threadId, i
 	"<input type='hidden' name='parentId' value='" << std::to_string(commentId) << "'>"
 	"<textarea cols='25' name='body'></textarea><br>"
 	"<button type='submit' name='submit_param'>"
-	"Submit"
+	"Create Comment"
 	"</button>"
 	"</li>"
 	"</ul>"

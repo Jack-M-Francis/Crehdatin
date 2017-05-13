@@ -30,7 +30,7 @@ void createMainPage(FcgiData* fcgi, std::vector<std::string> parameters, void* _
 			}
 			
 			fcgi->out << "<div class='thread'><a href='https://" << Config::getDomain() << "/thread/" << std::to_string(threadId) << "'><div class='threadTitle'>"
-			<< escapeHtml(title) << "</div></a><br><div class='extraPostInfo'>" << getFormattedPosterString(data->con, anonId, userId) <<
+			<< escapeHtml(title) << "</div></a><div class='extraPostInfo'>" << getFormattedPosterString(data->con, anonId, userId) <<
 			"</div></div>";
 			
 		}while(res->next());

@@ -31,7 +31,7 @@ void createLoginPage(FcgiData* fcgi, RequestData* data, std::string loginError, 
 	}
 	fcgi->out <<
 	"<button type='submit' name='submit_param'>"
-	"Submit"
+	"Login"
 	"</button>"
 	"</form>"
 	"<h1>Create Account:</h1>"
@@ -50,7 +50,7 @@ void createLoginPage(FcgiData* fcgi, RequestData* data, std::string loginError, 
 	}
 	fcgi->out <<
 	"<button type='submit' name='submit_param'>"
-	"Submit"
+	"Create Account"
 	"</button>"
 	"</form>";
 	

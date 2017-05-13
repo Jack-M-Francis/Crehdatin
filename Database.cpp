@@ -78,6 +78,7 @@ bool Database::createDatabase(){
 	"passwordHash TEXT NOT NULL,"
 	"passwordSalt TEXT NOT NULL,"
 	"userPosition TEXT DEFAULT NULL,"
+	"cssTheme TEXT DEFAULT NULL,"
 	"createdTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,"
 	"lastPostTime TIMESTAMP NULL"
 	")");

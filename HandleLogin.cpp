@@ -4,7 +4,19 @@ void handleLogin(FcgiData* fcgi, std::vector<std::string> parameters, void* _dat
 	RequestData* data = (RequestData*)_data;
 	
 	if(data->userId != -1){
-		createLoginPage(fcgi, data, "", "You Are Already Logged In");
+		createPageHeader(fcgi, data);
+		fcgi->out << 
+		"<p><div class='errorText'>"
+		"You are already logged in."
+		"</div></p>";
+		createPageFooter(fcgi, data);
+		return;
+	}
+	
+	std::string authToken;
+	if(getPostValue(fcgi->cgi, authToken, "authToken", Config::getUniqueTokenLength(), InputFlag::AllowStrictOnly) != InputError::NoError 
+		|| authToken != data->authToken){
+		createLoginPage(fcgi, data, "Invalid Authentication Token", "");
 		return;
 	}
 	
@@ -39,13 +51,6 @@ void handleLogin(FcgiData* fcgi, std::vector<std::string> parameters, void* _dat
 		return;
 	case InputError::NoError:
 		break;
-	}
-	
-	std::string authToken;
-	if(getPostValue(fcgi->cgi, authToken, "authToken", Config::getUniqueTokenLength(), InputFlag::AllowStrictOnly) != InputError::NoError 
-		|| authToken != data->authToken){
-		createLoginPage(fcgi, data, "Invalid Authentication Token", "");
-		return;
 	}
 	
 	sql::PreparedStatement* prepStmt = data->con->prepareStatement("SELECT passwordHash, passwordSalt, id FROM users WHERE userName = ?");
