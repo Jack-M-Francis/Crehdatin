@@ -4,6 +4,16 @@ void formatUserPostBody(std::string& body){
 	replaceAll(body, "\n", "<br>");
 	replaceAll(body, "\r", "");
 	trimString(body);
+	for(int linkCharNumber; linkCharNumber <= body.length; linkCharNumber++){
+		if(body[linkCharNumber]=='h'){
+			if(linkCharNumber!=body.length&&body[linkCharNumber + 1]=='t'&&body[linkCharNumber + 2]=='t'&&body[linkCharNumber + 3]=='p'){
+				for(string link;body[linkCharNumber] <= body.length - 1;linkCharNumber++){
+					link=link+body[linkCharNumber];
+				}
+			}
+		}
+	}
+	link="<a href='"+link+"'>" + link + "</a>";
 }
 
 void createThreadPage(FcgiData* fcgi, std::vector<std::string> parameters, void* _data){
