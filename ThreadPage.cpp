@@ -4,7 +4,7 @@ void formatUserPostBody(std::string& body){
 	replaceAll(body, "\n", "<br>");
 	replaceAll(body, "\r", "");
 	trimString(body);
-	for(int linkCharNumber; linkCharNumber <= body.length; linkCharNumber++){
+	for(int linkCharNumber=0; linkCharNumber <= body.length; linkCharNumber++){
 		if(body[linkCharNumber]=='h'){
 			if(linkCharNumber!=body.length&&body[linkCharNumber + 1]=='t'&&body[linkCharNumber + 2]=='t'&&body[linkCharNumber + 3]=='p'){
 				for(string link;body[linkCharNumber] <= body.length - 1;linkCharNumber++){
