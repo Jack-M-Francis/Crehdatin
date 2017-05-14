@@ -37,11 +37,13 @@ std::string formatUserPostBody(std::string body){
 			}
 		}
 		else{
-			buffer += body[i];
 			if(body[i] == ' ' || body[i] == '\r' || body[i] == '\n' || i == body.size() - 1){
-				output += "<a href='" + buffer + "'>" + buffer + "</a>";
+				output += "<a href='" + buffer + "'>" + buffer + "</a>" + body[i];
 				buffer.clear();
 				gettingUrl = false;
+			}
+			else{
+				buffer += body[i];
 			}
 		}
 	
@@ -145,7 +147,7 @@ void createCommentLine(FcgiData* fcgi, RequestData* data, std::string& threadId,
 		body = escapeHtml(body);
 		body = formatUserPostBody(body);
 		
-		fcgi->out << "<a name='" << std::to_string(commentId) << "'>"
+		fcgi->out << "<a name='" << std::to_string(commentId) << "'></a>"
 		<< (layer%2==0?"<div class='commentEven'>":"<div class='commentOdd'>") << 
 		"<div class='extraPostInfo'>";
 		

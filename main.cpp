@@ -46,10 +46,6 @@ std::size_t numberOfThreads = 8;
 
 int main(int argc, char** argv){
 	
-	std::cout << formatUserPostBody(escapeHtml(">memed to the https://tenth.degree/meme"));
-	
-	return 0;
-	
 	if(argc > 1){
 		if(argc == 2){
 			if(argv[1] == std::string("--install")){
