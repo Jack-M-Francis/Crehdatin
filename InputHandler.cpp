@@ -10,7 +10,7 @@ std::string escapeHtml(const std::string& s){
 			output << "&gt;";
 		}
 		else if(*i == '&'){
-			output << "&lt;";
+			output << "&amp;";
 		}
 		else if(*i == ';'){
 			output << "&#59;";

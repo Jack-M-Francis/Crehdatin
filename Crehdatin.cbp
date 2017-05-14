@@ -74,8 +74,8 @@
 		<Unit filename="HandleReportComment.h" />
 		<Unit filename="HandleReportThread.cpp" />
 		<Unit filename="HandleReportThread.h" />
-		<Unit filename="HandleSetCss.cpp" />
-		<Unit filename="HandleSetCss.h" />
+		<Unit filename="HandleSetCssTheme.cpp" />
+		<Unit filename="HandleSetCssTheme.h" />
 		<Unit filename="InputHandler.cpp" />
 		<Unit filename="InputHandler.h" />
 		<Unit filename="LoginPage.cpp" />

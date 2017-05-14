@@ -1,9 +1,64 @@
 #include "ThreadPage.h"
 
-void formatUserPostBody(std::string& body){
-	replaceAll(body, "\n", "<br>");
+std::string formatUserPostBody(std::string body){
+	
 	replaceAll(body, "\r", "");
-	trimString(body);
+	
+	std::string output;
+	
+	std::string buffer;
+	bool gettingUrl = false;
+	bool doingGreenText = false;
+	
+	for(int i = 0; i < body.size(); i++){
+		
+		if(!gettingUrl){
+			buffer += body[i];
+			while(buffer.size() != 0 && buffer[buffer.size() - 1] != std::string("&gt;")[buffer.size() - 1] && buffer[buffer.size() - 1] != std::string("https://")[buffer.size() - 1] && buffer[buffer.size() - 1] != std::string("http://")[buffer.size() - 1]){
+				output += buffer[0];
+				buffer.erase(0, 1);
+			}
+			if(buffer == "https:"){
+				gettingUrl = true;
+			}
+			else if(buffer == "https:"){
+				gettingUrl = true;
+			}
+			else if(buffer == "&gt;"){
+				if(!doingGreenText){
+					doingGreenText = true;
+					output += "<div class='greenText'>" + buffer;
+					buffer.clear();
+				}
+				else{
+					output += buffer;
+					buffer.clear();
+				}
+			}
+		}
+		else{
+			buffer += body[i];
+			if(body[i] == ' ' || body[i] == '\r' || body[i] == '\n' || i == body.size() - 1){
+				output += "<a href='" + buffer + "'>" + buffer + "</a>";
+				buffer.clear();
+				gettingUrl = false;
+			}
+		}
+	
+		if(body[i] == '\n' || i == body.size() - 1){
+			if(doingGreenText){
+				doingGreenText = false;
+				output += "</div>";
+			}
+		}
+	}
+	
+	output += buffer;//empty the buffer
+	
+	replaceAll(output, "\n", "<br>");
+	trimString(output);
+	
+	return output;
 }
 
 void createThreadPage(FcgiData* fcgi, std::vector<std::string> parameters, void* _data){
@@ -34,7 +89,7 @@ void createThreadPage(FcgiData* fcgi, std::vector<std::string> parameters, void*
 		}
 		
 		body = escapeHtml(body);
-		formatUserPostBody(body);
+		body = formatUserPostBody(body);
 		
 		fcgi->out << "<div class='thread'><div class='threadTitle'>"
 			<< escapeHtml(title) << "</div><div class='extraPostInfo'>";
@@ -45,17 +100,6 @@ void createThreadPage(FcgiData* fcgi, std::vector<std::string> parameters, void*
 			"<div class='threadText'>" << body
 			<< "</div></div>";
 			
-			
-			/*
-			"<form method='post' action='https://" << Config::getDomain() << "/thread/" << threadId << "/newComment' accept-charset='UTF-8'>"
-			"<input type='hidden' name='authToken' value='" << data->authToken << "'>"
-			"<input type='hidden' name='parentId' value='-1'>"
-			"<textarea name='body'></textarea><br>"
-			"<button type='submit' name='submit_param'>"
-			"Submit"
-			"</button>" 
-			"</form>";
-			*/
 		createCommentLine(fcgi, data, threadId);
 	}
 	else{
@@ -99,7 +143,7 @@ void createCommentLine(FcgiData* fcgi, RequestData* data, std::string& threadId,
 		}
 		
 		body = escapeHtml(body);
-		formatUserPostBody(body);
+		body = formatUserPostBody(body);
 		
 		fcgi->out << "<a name='" << std::to_string(commentId) << "'>"
 		<< (layer%2==0?"<div class='commentEven'>":"<div class='commentOdd'>") << 
