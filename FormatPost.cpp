@@ -166,6 +166,7 @@ std::string formatUserPostBody(std::string body){
 				buffer.clear();
 				output += formatStack.top()->finishExclusiveFormat(exclusiveContents);
 				exclusiveContents.clear();
+				unusedFormats.push_back(formatStack.top());
 				formatStack.pop();
 			}
 		}
