@@ -120,7 +120,7 @@ bool HyperLinkFormat::isValidBufferEnd(const std::string& buffer){
 }
 
 bool HyperLinkFormat::isExactBufferEnd(const std::string& buffer){
-	return buffer == " ";
+	return buffer == " " || buffer == "\n";
 }
 
 std::string HyperLinkFormat::finishExclusiveFormat(const std::string& internal){
