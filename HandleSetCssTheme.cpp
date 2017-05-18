@@ -29,7 +29,7 @@ void handleSetCssTheme(FcgiData* fcgi, std::vector<std::string> parameters, void
 		break;
 	}
 	
-	if(theme != "dark" && theme != "light" && theme != "aesthicc" && theme != "anime"){
+	if(theme != "dark" && theme != "light" && theme != "aesthicc" && theme != "anime" && theme != "synthwave"){
 		createSettingsPage(fcgi, data, "Invalid Theme", "");
 	}
 	

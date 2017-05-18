@@ -54,6 +54,8 @@
 		<Unit filename="Cryptography.h" />
 		<Unit filename="Database.cpp" />
 		<Unit filename="Database.h" />
+		<Unit filename="FormatPost.cpp" />
+		<Unit filename="FormatPost.h" />
 		<Unit filename="HandleCreateAccount.cpp" />
 		<Unit filename="HandleCreateAccount.h" />
 		<Unit filename="HandleDeleteComment.cpp" />

@@ -34,6 +34,9 @@ void createSettingsPage(FcgiData* fcgi, RequestData* data, std::string cssError,
 	else if(data->cssTheme == "anime"){
 		fcgi->out << "Animu";
 	}
+	else if(data->cssTheme == "synthwave"){
+		fcgi->out << "Synthwave";
+	}
 	else{
 		fcgi->out << "ERROR";
 	}
@@ -46,6 +49,7 @@ void createSettingsPage(FcgiData* fcgi, RequestData* data, std::string cssError,
 	"<option value='light'>Light</option>"
 	"<option value='aesthicc'>Aesthicc</option>"
 	"<option value='anime'>Animu</option>"
+	"<option value='synthwave'>Synthwave</option>"
 	"</select>"
 	"<button type='submit' name='submit_param'>"
 	"Change Theme"

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1494732877 source:/home/daniel/Projects/codeblocks/Crehdatin/main.cpp
+1495145258 source:/home/daniel/Projects/codeblocks/Crehdatin/main.cpp
 	<iostream>
 	<thread>
 	<vector>
@@ -260,7 +260,7 @@
 	"InputHandler.h"
 	"UserData.h"
 
-1494641243 /home/daniel/Projects/codeblocks/Crehdatin/ThreadPage.h
+1495059718 /home/daniel/Projects/codeblocks/Crehdatin/ThreadPage.h
 	"Config.h"
 	<cppconn/driver.h>
 	<cppconn/exception.h>
@@ -274,6 +274,7 @@
 	"StringHelper.h"
 	"PageHeader.h"
 	"PageFooter.h"
+	"FormatPost.h"
 
 1494558977 /home/daniel/Projects/codeblocks/Crehdatin/StringHelper.h
 	<sstream>
@@ -286,7 +287,7 @@
 	<string>
 	<mutex>
 
-1494733363 source:/home/daniel/Projects/codeblocks/Crehdatin/ThreadPage.cpp
+1495059719 source:/home/daniel/Projects/codeblocks/Crehdatin/ThreadPage.cpp
 	"ThreadPage.h"
 
 1494618608 /home/daniel/Projects/codeblocks/Crehdatin/UserData.h
@@ -447,10 +448,10 @@
 	"PageHeader.h"
 	"PageFooter.h"
 
-1494638696 source:/home/daniel/Projects/codeblocks/Crehdatin/SettingsPage.cpp
+1494897433 source:/home/daniel/Projects/codeblocks/Crehdatin/SettingsPage.cpp
 	"SettingsPage.h"
 
-1494638308 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleSetCssTheme.cpp
+1494897465 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleSetCssTheme.cpp
 	"HandleSetCssTheme.h"
 
 1494638230 /home/daniel/Projects/codeblocks/Crehdatin/HandleSetCssTheme.h
@@ -463,4 +464,12 @@
 	<WebsiteFramework/WebsiteFramework.h>
 	"SettingsPage.h"
 	"InputHandler.h"
+
+1495145378 /home/daniel/Projects/codeblocks/Crehdatin/FormatPost.h
+	"StringHelper.h"
+	<stack>
+	<vector>
+
+1495145434 source:/home/daniel/Projects/codeblocks/Crehdatin/FormatPost.cpp
+	"FormatPost.h"
 
