@@ -31,6 +31,40 @@ std::string GreenTextFormat::endTag(const std::string& buffer){
 
 //====
 
+RainbowTextFormat::RainbowTextFormat(){exclusive = false;}
+
+bool RainbowTextFormat::isValidBufferBegin(const std::string& buffer){
+	if(buffer.size() > 11){
+		return false;
+	}
+	return buffer == std::string("&amp;#%%^)*").substr(0, buffer.size());
+}
+
+bool RainbowTextFormat::isExactBufferBegin(const std::string& buffer){
+	return buffer == "&amp;#%%^)*";
+}
+
+std::string RainbowTextFormat::startTag(const std::string& buffer){
+	return "<div class='rainbowText'>";
+}
+
+bool RainbowTextFormat::isValidBufferEnd(const std::string& buffer){
+	if(buffer.size() > 11){
+		return false;
+	}
+	return buffer == std::string("&amp;#%%^)*").substr(0, buffer.size());
+}
+
+bool RainbowTextFormat::isExactBufferEnd(const std::string& buffer){
+	return buffer == "&amp;#%%^)*";
+}
+
+std::string RainbowTextFormat::endTag(const std::string& buffer){
+	return "</div>";
+}
+
+//====
+
 ItalicFormat::ItalicFormat(){exclusive = false;}
 
 bool ItalicFormat::isValidBufferBegin(const std::string& buffer){
