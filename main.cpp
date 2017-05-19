@@ -42,8 +42,6 @@
 
 #include "Recaptcha.h"
 
-std::size_t numberOfThreads = 8;
-
 int main(int argc, char** argv){
 	
 	if(argc > 1){
@@ -289,7 +287,7 @@ int main(int argc, char** argv){
 		WebsiteFramework::addPostHandleMap("/thread/*/deleteComment", handleDeleteComment);
 		WebsiteFramework::addPostHandleMap("/dismissReports", handleDismissReports);
 		
-		WebsiteFramework::run(":8222", std::thread::hardware_concurrency());
+		WebsiteFramework::run(":8222", std::thread::hardware_concurrency() * 16);
 		
 		std::cout << "Shutting down...\n";
 	}
