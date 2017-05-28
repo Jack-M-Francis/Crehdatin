@@ -17,8 +17,8 @@ std::string Config::getSqlDatabaseName(){
 }
 
 std::string Config::getDomain(){
-	return "crehdatin.karagory.com";
-	//return "website.cloud.karagory.com";
+	//return "crehdatin.karagory.com";
+	return "website.cloud.karagory.com";
 }
 
 std::size_t Config::getUniqueTokenLength(){
@@ -62,6 +62,15 @@ std::size_t Config::getMaxReportLength(){
 }
 
 bool Config::hasDeletePermissions(std::string& position){
+	if(position == "moderator" || position == "admin" || position == "senate"){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+bool Config::hasRainbowTextPermissions(std::string& position){
 	if(position == "moderator" || position == "admin" || position == "senate"){
 		return true;
 	}

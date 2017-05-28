@@ -171,15 +171,19 @@ void HyperLinkFormat::gotEndTag(const std::string& buffer){
 
 //===
 
-std::string formatUserPostBody(std::string body){
+std::string formatUserPostBody(std::string body, std::string userPosition){
 	replaceAll(body, "\r", "");
 	
 	GreenTextFormat greenTextFormat;
 	ItalicFormat italicFormat;
 	BoldFormat boldFormat;
 	HyperLinkFormat hyperLinkFormat;
+	RainbowTextFormat rainbowTextFormat;
 	
 	std::vector<FormatPrimitive*> unusedFormats{&greenTextFormat, &italicFormat, &boldFormat, &hyperLinkFormat};
+	if(Config::hasRainbowTextPermissions(userPosition)){
+		unusedFormats.push_back(&rainbowTextFormat);
+	}
 	
 	std::stack<FormatPrimitive*> formatStack;
 	

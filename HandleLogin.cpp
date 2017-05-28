@@ -71,7 +71,7 @@ void handleLogin(FcgiData* fcgi, std::vector<std::string> parameters, void* _dat
 	delete res;
 	delete prepStmt;
 	
-	if(passwordHash != generateSecureHash(password + passwordSalt)){
+	if(passwordHash != generateSecureHash(password, passwordSalt)){
 		createLoginPage(fcgi, data, "Incorrect Password", "");
 		return;
 	}

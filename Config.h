@@ -21,5 +21,6 @@ public:
 	static int64_t userReportingTimeout();
 	static std::size_t getMaxReportLength();
 	static bool hasDeletePermissions(std::string& position);
+	static bool hasRainbowTextPermissions(std::string& position);
 };
 

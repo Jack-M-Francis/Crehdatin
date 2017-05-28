@@ -4,7 +4,7 @@ std::string generateRandomToken(){
 	static CryptoPP::AutoSeededRandomPool generator;
 	static std::mutex randomLock;
 	
-	CryptoPP::SecByteBlock byteBlock(256);
+	CryptoPP::SecByteBlock byteBlock(Config::getUniqueTokenLength() / 2);
 	randomLock.lock();//make sure that this is called in a thread safe way
 	generator.GenerateBlock(byteBlock, byteBlock.size());
 	randomLock.unlock();
@@ -18,15 +18,16 @@ std::string generateRandomToken(){
 	return randomToken;
 }
 
-std::string generateSecureHash(std::string data){//for now we will be using the whirlpool hash provided by crypto++, I can always change this later
-	byte digest[CryptoPP::Whirlpool::DIGESTSIZE];
-	CryptoPP::Whirlpool().CalculateDigest(digest, (unsigned char*)data.c_str(), data.size());
-	
-	std::string output;
-	
-	CryptoPP::HexEncoder hex(new CryptoPP::StringSink(output));
-	hex.Put(digest, CryptoPP::Whirlpool::DIGESTSIZE);
-	hex.MessageEnd();
-	
-	return output;
+std::string generateSecureHash(std::string password, std::string salt){
+    uint8_t derived[Config::getUniqueTokenLength() / 2];
+    
+    crypto_scrypt((const uint8_t*)password.c_str(), password.size(), (const uint8_t*)salt.c_str(), salt.size(), pow(2, 15), 8, 1, derived, sizeof(derived));
+    
+    std::string result;
+    CryptoPP::HexEncoder encoder(new CryptoPP::StringSink(result));
+
+    encoder.Put(derived, sizeof(derived));
+    encoder.MessageEnd();
+
+    return result;
 }

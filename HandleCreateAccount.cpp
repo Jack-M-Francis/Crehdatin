@@ -76,7 +76,7 @@ void handleCreateAccount(FcgiData* fcgi, std::vector<std::string> parameters, vo
 	}
 	
 	std::string salt = generateRandomToken();
-	std::string hash = generateSecureHash(password + salt);
+	std::string hash = generateSecureHash(password, salt);
 	
 	sql::PreparedStatement* prepStmt = data->con->prepareStatement("INSERT INTO users "
 				"(userName, passwordHash, passwordSalt) SELECT ?, ?, ? FROM DUAL WHERE NOT EXISTS "

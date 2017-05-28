@@ -4,6 +4,8 @@
 #include <stack>
 #include <vector>
 
+#include "Config.h"
+
 class FormatPrimitive{
 public:
 	virtual ~FormatPrimitive() = default;
@@ -77,5 +79,5 @@ public:
 	std::string endTag;
 };
 
-std::string formatUserPostBody(std::string body);
+std::string formatUserPostBody(std::string body, std::string userPosition);
 

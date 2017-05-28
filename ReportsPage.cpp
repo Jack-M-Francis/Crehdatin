@@ -80,8 +80,14 @@ void createReportedThread(FcgiData* fcgi, RequestData* data, int64_t threadId){
 		}
 		std::string posterIp = res->getString("posterIp");
 		
-		body = escapeHtml(body);
-		formatUserPostBody(body);
+		std::string userName;
+		std::string userPosition;
+		
+		if(userId != -1){
+			getUserData(data->con, userId, userName, userPosition);
+		}
+		
+		body = formatUserPostBody(escapeHtml(body), userPosition);
 		
 		fcgi->out << "<div class='thread'><a href='https://" << Config::getDomain() << "/thread/" << std::to_string(threadId) << "'>"
 			<< escapeHtml(title) << "</a><br><div class='extraPostInfo'>";
@@ -105,11 +111,6 @@ void createReportedThread(FcgiData* fcgi, RequestData* data, int64_t threadId){
 			
 		fcgi->out << "</ul></div>";
 		if(userId != -1){
-			std::string userName;
-			std::string userPosition;
-			
-			getUserData(data->con, userId, userName, userPosition);
-			
 			fcgi->out << "user: " << userName << ", ";
 		}
 		
@@ -143,8 +144,15 @@ void createReportedComment(FcgiData* fcgi, RequestData* data, int64_t threadId, 
 		}
 		std::string posterIp = res->getString("posterIp");
 		
+		std::string userName;
+		std::string userPosition;
+		
+		if(userId != -1){
+			getUserData(data->con, userId, userName, userPosition);
+		}
+		
 		body = escapeHtml(body);
-		formatUserPostBody(body);
+		body = formatUserPostBody(body, userPosition);
 		
 		fcgi->out << "<div class='commentEven'><div class='extraPostInfo'><a href='https://" << Config::getDomain() << "/thread/" << std::to_string(threadId) << "#" << std::to_string(commentId) << "'>comment</a>, "
 			"<div class='dropDown'><div class='dropBtn'>Actions</div><ul><li><form method='post' action='https://" << Config::getDomain() << "/thread/" << threadId << "/deleteComment' class='inline'>"
@@ -167,11 +175,6 @@ void createReportedComment(FcgiData* fcgi, RequestData* data, int64_t threadId, 
 			
 		fcgi->out << "</ul></div>";
 		if(userId != -1){
-			std::string userName;
-			std::string userPosition;
-			
-			getUserData(data->con, userId, userName, userPosition);
-			
 			fcgi->out << "user: " << userName << ", ";
 		}
 		

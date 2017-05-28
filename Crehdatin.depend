@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1495146675 source:/home/daniel/Projects/codeblocks/Crehdatin/main.cpp
+1495934236 source:/home/daniel/Projects/codeblocks/Crehdatin/main.cpp
 	<iostream>
 	<thread>
 	<vector>
@@ -34,6 +34,7 @@
 	"HandleDeleteComment.h"
 	"ReportsPage.h"
 	"HandleDismissReports.h"
+	"RequestStartHandle.h"
 	"Recaptcha.h"
 
 1494210582 /home/daniel/Projects/codeblocks//WebsiteFramework/WebsiteFramework.h
@@ -58,10 +59,10 @@
 	<cgicc/HTMLDoctype.h>
 	<cgicc/HTMLClasses.h>
 
-1494558668 source:/home/daniel/Projects/codeblocks/Crehdatin/Config.cpp
+1495931323 source:/home/daniel/Projects/codeblocks/Crehdatin/Config.cpp
 	"Config.h"
 
-1494558668 /home/daniel/Projects/codeblocks/Crehdatin/Config.h
+1495228795 /home/daniel/Projects/codeblocks/Crehdatin/Config.h
 	<string>
 
 1494629995 source:/home/daniel/Projects/codeblocks/Crehdatin/Database.cpp
@@ -103,16 +104,18 @@
 	<cppconn/prepared_statement.h>
 	<WebsiteFramework/WebsiteFramework.h>
 
-1494558702 source:/home/daniel/Projects/codeblocks/Crehdatin/Cryptography.cpp
+1495933959 source:/home/daniel/Projects/codeblocks/Crehdatin/Cryptography.cpp
 	"Cryptography.h"
 
-1494558706 /home/daniel/Projects/codeblocks/Crehdatin/Cryptography.h
+1495931293 /home/daniel/Projects/codeblocks/Crehdatin/Cryptography.h
+	"scrypt/crypto_scrypt.h"
 	<mutex>
 	<cryptopp/osrng.h>
 	<cryptopp/filters.h>
 	<cryptopp/hex.h>
-	<cryptopp/whrlpool.h>
 	<string>
+	<tgmath.h>
+	"Config.h"
 
 1494558919 /home/daniel/Projects/codeblocks/Crehdatin/PageHeader.h
 	<WebsiteFramework/WebsiteFramework.h>
@@ -152,7 +155,7 @@
 1494626566 source:/home/daniel/Projects/codeblocks/Crehdatin/PageFooter.cpp
 	"PageFooter.h"
 
-1494637026 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleCreateAccount.cpp
+1495931474 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleCreateAccount.cpp
 	"HandleCreateAccount.h"
 
 1494558724 /home/daniel/Projects/codeblocks/Crehdatin/HandleCreateAccount.h
@@ -179,7 +182,7 @@
 1494716898 source:/home/daniel/Projects/codeblocks/Crehdatin/InputHandler.cpp
 	"InputHandler.h"
 
-1494637002 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleLogin.cpp
+1495853292 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleLogin.cpp
 	"HandleLogin.h"
 
 1494558781 /home/daniel/Projects/codeblocks/Crehdatin/HandleLogin.h
@@ -287,7 +290,7 @@
 	<string>
 	<mutex>
 
-1495059719 source:/home/daniel/Projects/codeblocks/Crehdatin/ThreadPage.cpp
+1495228855 source:/home/daniel/Projects/codeblocks/Crehdatin/ThreadPage.cpp
 	"ThreadPage.h"
 
 1494618608 /home/daniel/Projects/codeblocks/Crehdatin/UserData.h
@@ -390,7 +393,7 @@
 	"UserData.h"
 	"InputHandler.h"
 
-1494627509 source:/home/daniel/Projects/codeblocks/Crehdatin/ReportsPage.cpp
+1495228746 source:/home/daniel/Projects/codeblocks/Crehdatin/ReportsPage.cpp
 	"ReportsPage.h"
 
 1494558952 /home/daniel/Projects/codeblocks/Crehdatin/ReportsPage.h
@@ -465,11 +468,119 @@
 	"SettingsPage.h"
 	"InputHandler.h"
 
-1495145378 /home/daniel/Projects/codeblocks/Crehdatin/FormatPost.h
+1495228812 /home/daniel/Projects/codeblocks/Crehdatin/FormatPost.h
 	"StringHelper.h"
 	<stack>
 	<vector>
+	"Config.h"
 
-1495146768 source:/home/daniel/Projects/codeblocks/Crehdatin/FormatPost.cpp
+1495226337 source:/home/daniel/Projects/codeblocks/Crehdatin/FormatPost.cpp
 	"FormatPost.h"
+
+1495942793 /home/daniel/Projects/codeblocks/Crehdatin/RequestStartHandle.h
+	"Config.h"
+	<cppconn/driver.h>
+	<cppconn/exception.h>
+	<cppconn/resultset.h>
+	<cppconn/statement.h>
+	<cppconn/prepared_statement.h>
+	"Response.h"
+	"RequestData.h"
+	"Cryptography.h"
+
+1495858148 source:/home/daniel/Projects/codeblocks/Crehdatin/RequestStartHandle.cpp
+	"RequestStartHandle.h"
+
+1495934190 /home/daniel/Projects/codeblocks/Crehdatin/scrypt/crypto_scrypt.h
+	<stdint.h>
+	<stddef.h>
+
+1495924036 source:/home/daniel/Projects/codeblocks/Crehdatin/scrypt/crypto_aesctr.c
+	"scrypt_platform.h"
+	<stdint.h>
+	<stdlib.h>
+	<openssl/aes.h>
+	"sysendian.h"
+	"crypto_aesctr.h"
+
+1263674900 /home/daniel/Projects/codeblocks/Crehdatin/scrypt/crypto_aesctr.h
+	<stdint.h>
+	<openssl/aes.h>
+
+1495919110 /home/daniel/Projects/codeblocks/Crehdatin/scrypt/scrypt_platform.h
+	"config.h"
+
+1495918738 /home/daniel/Projects/codeblocks/Crehdatin/scrypt/config.h
+
+1263674900 /home/daniel/Projects/codeblocks/Crehdatin/scrypt/sysendian.h
+	"scrypt_platform.h"
+	<sys/endian.h>
+	<stdint.h>
+
+1495930571 source:/home/daniel/Projects/codeblocks/Crehdatin/scrypt/crypto_scrypt-nosse.c
+	"scrypt_platform.h"
+	<sys/types.h>
+	<sys/mman.h>
+	<errno.h>
+	<stdint.h>
+	<stdlib.h>
+	<string.h>
+	"sha256.h"
+	"sysendian.h"
+	"crypto_scrypt.h"
+
+1263674900 /home/daniel/Projects/codeblocks/Crehdatin/scrypt/sha256.h
+	<sys/types.h>
+	<stdint.h>
+
+1263674900 source:/home/daniel/Projects/codeblocks/Crehdatin/scrypt/crypto_scrypt-ref.c
+	"scrypt_platform.h"
+	<errno.h>
+	<stdint.h>
+	<stdlib.h>
+	<string.h>
+	"sha256.h"
+	"sysendian.h"
+	"crypto_scrypt.h"
+
+1263674900 source:/home/daniel/Projects/codeblocks/Crehdatin/scrypt/crypto_scrypt-sse.c
+	"scrypt_platform.h"
+	<sys/types.h>
+	<sys/mman.h>
+	<emmintrin.h>
+	<errno.h>
+	<stdint.h>
+	<stdlib.h>
+	<string.h>
+	"sha256.h"
+	"sysendian.h"
+	"crypto_scrypt.h"
+
+1263674900 source:/home/daniel/Projects/codeblocks/Crehdatin/scrypt/sha256.c
+	"scrypt_platform.h"
+	<sys/types.h>
+	<stdint.h>
+	<string.h>
+	"sysendian.h"
+	"sha256.h"
+
+1495931193 source:/home/daniel/Projects/codeblocks/Crehdatin/scrypt/crypto_scrypt-nosse.cpp
+	"scrypt_platform.h"
+	<sys/types.h>
+	<sys/mman.h>
+	<errno.h>
+	<stdint.h>
+	<stdlib.h>
+	<string.h>
+	"sha256.h"
+	"sysendian.h"
+	"crypto_scrypt.h"
+
+1495931217 source:/home/daniel/Projects/codeblocks/Crehdatin/scrypt/sha256.cpp
+	"scrypt_platform.h"
+	<sys/types.h>
+	<stdint.h>
+	<string.h>
+	"sysendian.h"
+	"sha256.h"
 

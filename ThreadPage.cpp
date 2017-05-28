@@ -27,8 +27,7 @@ void createThreadPage(FcgiData* fcgi, std::vector<std::string> parameters, void*
 			getUserData(data->con, userId, userName, userPosition);
 		}
 		
-		body = escapeHtml(body);
-		body = formatUserPostBody(body);
+		body = formatUserPostBody(escapeHtml(body), userPosition);
 		
 		fcgi->out << "<div class='thread'><div class='threadTitle'>"
 			<< escapeHtml(title) << "</div><div class='extraPostInfo'>";
@@ -81,8 +80,7 @@ void createCommentLine(FcgiData* fcgi, RequestData* data, std::string& threadId,
 			getUserData(data->con, userId, userName, userPosition);
 		}
 		
-		body = escapeHtml(body);
-		body = formatUserPostBody(body);
+		body = formatUserPostBody(escapeHtml(body), userPosition);
 		
 		fcgi->out << "<a name='" << std::to_string(commentId) << "'></a>"
 		<< (layer%2==0?"<div class='commentEven'>":"<div class='commentOdd'>") << 
