@@ -5,39 +5,29 @@ void createMainPage(FcgiData* fcgi, std::vector<std::string> parameters, void* _
 	
 	createPageHeader(fcgi, data);
 	
-	sql::PreparedStatement* prepStmt = data->con->prepareStatement("SELECT id, title, anonId, userId FROM threads ORDER BY lastBumpTime DESC");
-	sql::ResultSet* res = prepStmt->executeQuery();
+	std::unique_ptr<sql::PreparedStatement> prepStmt(data->con->prepareStatement("SELECT title, name, postLocked, commentLocked FROM subdatins"));
+	std::unique_ptr<sql::ResultSet> res(prepStmt->executeQuery());
 	
 	res->beforeFirst();
 	
 	if(!res->next()){
-		fcgi->out << "<div class='errorText'><i>There don't appear to be any posts here...</i></div>";
+		fcgi->out << "<div class='errorText'><i>There don't appear to be any subdatins...</i></div>";
 	}
 	else{
 		do{
-			int64_t threadId = res->getInt64("id");
 			std::string title = res->getString("title");
-			std::string anonId;
-			if(!res->isNull("anonId")){
-				anonId = res->getString("anonId");
+			std::string name = res->getString("name");
+			fcgi->out << "<div class='thread'><a href='https://" << Config::getDomain() << "/d/" << percentEncode(title) << "'><div class='threadTitle'>"
+			<< escapeHtml(name) << "</div></a><div class='extraPostInfo'><div class='postInfoElement'>/" << escapeHtml(title) << "/</div>";
+			if(res->getBoolean("postLocked")){
+				fcgi->out << "<div class='postInfoElement'>Posts Locked</div>";
 			}
-			std::string userName;
-			std::string userPosition;
-			int64_t userId = -1;
-			if(!res->isNull("userId")){
-				userId = res->getInt64("userId");
-				getUserData(data->con, userId, userName, userPosition);
+			if(res->getBoolean("commentLocked")){
+				fcgi->out << "<div class='postInfoElement'>Comments Locked</div>";
 			}
-			
-			fcgi->out << "<div class='thread'><a href='https://" << Config::getDomain() << "/thread/" << std::to_string(threadId) << "'><div class='threadTitle'>"
-			<< escapeHtml(title) << "</div></a><div class='extraPostInfo'>" << getFormattedPosterString(data->con, anonId, userId) <<
-			"</div></div>";
-			
+			fcgi->out << "</div></div>";
 		}while(res->next());
 	}
-	
-	delete res;
-	delete prepStmt;
 	
 	createPageFooter(fcgi, data);
 }

@@ -33,11 +33,10 @@ void handleSetCssTheme(FcgiData* fcgi, std::vector<std::string> parameters, void
 		createSettingsPage(fcgi, data, "Invalid Theme", "");
 	}
 	
-	sql::PreparedStatement* prepStmt = data->con->prepareStatement("UPDATE users SET cssTheme=? WHERE id=?");
+	std::unique_ptr<sql::PreparedStatement> prepStmt(data->con->prepareStatement("UPDATE users SET cssTheme=? WHERE id=?"));
 	prepStmt->setString(1, theme);
 	prepStmt->setInt64(2, data->userId);
 	prepStmt->execute();
-	delete prepStmt;
 	
 	sendStatusHeader(fcgi->out, StatusCode::SeeOther);
 	sendLocationHeader(fcgi->out, "https://" + Config::getDomain() + "/settings");

@@ -53,10 +53,10 @@ void handleLogin(FcgiData* fcgi, std::vector<std::string> parameters, void* _dat
 		break;
 	}
 	
-	sql::PreparedStatement* prepStmt = data->con->prepareStatement("SELECT passwordHash, passwordSalt, id FROM users WHERE userName = ?");
+	std::unique_ptr<sql::PreparedStatement> prepStmt(data->con->prepareStatement("SELECT passwordHash, passwordSalt, id FROM users WHERE userName = ?"));
 	prepStmt->setString(1, userName);
 	
-	sql::ResultSet* res = prepStmt->executeQuery();
+	std::unique_ptr<sql::ResultSet> res(prepStmt->executeQuery());
 	res->beforeFirst();
 	
 	if(!res->next()){
@@ -68,19 +68,15 @@ void handleLogin(FcgiData* fcgi, std::vector<std::string> parameters, void* _dat
 	std::string passwordSalt = res->getString("passwordSalt");
 	int64_t userId = res->getInt64("id");
 	
-	delete res;
-	delete prepStmt;
-	
 	if(passwordHash != generateSecureHash(password, passwordSalt)){
 		createLoginPage(fcgi, data, "Incorrect Password", "");
 		return;
 	}
 	
-	prepStmt = data->con->prepareStatement("UPDATE sessions SET userId=?, shownId=NULL WHERE sessionToken=?");
+	prepStmt = std::unique_ptr<sql::PreparedStatement>(data->con->prepareStatement("UPDATE sessions SET userId=?, shownId=NULL WHERE sessionToken=?"));
 	prepStmt->setInt64(1, userId);
 	prepStmt->setString(2, data->sessionToken);
 	prepStmt->execute();
-	delete prepStmt;
 	
 	sendStatusHeader(fcgi->out, StatusCode::SeeOther);
 	sendLocationHeader(fcgi->out, "https://" + Config::getDomain() + "/");

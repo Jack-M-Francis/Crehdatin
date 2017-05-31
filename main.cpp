@@ -21,10 +21,15 @@
 #include "Response.h"
 
 #include "MainPage.h"
+#include "SubdatinPage.h"
 #include "LoginPage.h"
 #include "SettingsPage.h"
 #include "NewThreadPage.h"
 #include "ThreadPage.h"
+#include "ReportsPage.h"
+#include "UserPage.h"
+#include "SubdatinControlPanelPage.h"
+#include "CrehdatinControlPanelPage.h"
 
 #include "HandleCreateAccount.h"
 #include "HandleLogin.h"
@@ -32,12 +37,15 @@
 #include "HandleNewThread.h"
 #include "HandleNewComment.h"
 #include "HandleSetCssTheme.h"
+#include "HandleChangePassword.h"
+
+#include "HandleAddAdministrator.h"
+#include "HandleRemoveAdministrator.h"
 
 #include "HandleReportThread.h"
 #include "HandleDeleteThread.h"
 #include "HandleReportComment.h"
 #include "HandleDeleteComment.h"
-#include "ReportsPage.h"
 #include "HandleDismissReports.h"
 
 #include "RequestStartHandle.h"
@@ -45,8 +53,6 @@
 #include "Recaptcha.h"
 
 int main(int argc, char** argv){
-	
-	std::cout << generateSecureHash("smoke", "sodiumChloride") << std::endl;
 	
 	if(argc > 1){
 		if(argc == 2){
@@ -106,29 +112,37 @@ int main(int argc, char** argv){
 		});
 		
 		WebsiteFramework::setExceptionHandle([](void* _data, std::exception* e){
-				std::cout << "std::exception.what()" << e->what() << "\n";
+			std::cout << "std::exception.what()" << e->what() << "\n";
 		});
 		
 		WebsiteFramework::addGetHandleMap("/", createMainPage);
 		WebsiteFramework::addGetHandleMap("/createAccount", createCreateAccountPageHandle);
 		WebsiteFramework::addGetHandleMap("/login", createLoginPageHandle);
 		WebsiteFramework::addGetHandleMap("/settings", createSettingsPageHandle);
-		WebsiteFramework::addGetHandleMap("/newThread", createNewThreadPageHandle);
-		WebsiteFramework::addGetHandleMap("/thread/*", createThreadPage);
-		WebsiteFramework::addGetHandleMap("/reports", createReportsPage);
+		WebsiteFramework::addGetHandleMap("/controlPanel", createCrehdatinControlPanelPageHandle);
+		WebsiteFramework::addGetHandleMap("/d/*", createSubdatinPage);
+		WebsiteFramework::addGetHandleMap("/d/*/newThread", createNewThreadPageHandle);
+		WebsiteFramework::addGetHandleMap("/d/*/thread/*", createThreadPage);
+		WebsiteFramework::addGetHandleMap("/d/*/reports", createReportsPage);
+		WebsiteFramework::addGetHandleMap("/d/*/controlPanel", createSubdatinControlPanelPageHandle);
+		WebsiteFramework::addGetHandleMap("/user/*", createUserPage);
 		
 		WebsiteFramework::addPostHandleMap("/createAccount", handleCreateAccount);
 		WebsiteFramework::addPostHandleMap("/login", handleLogin);
 		WebsiteFramework::addPostHandleMap("/logout", handleLogout);
 		WebsiteFramework::addPostHandleMap("/setCssTheme", handleSetCssTheme);
-		WebsiteFramework::addPostHandleMap("/newThread", handleNewThread);
-		WebsiteFramework::addPostHandleMap("/thread/*/newComment", handleNewComment);
+		WebsiteFramework::addPostHandleMap("/changePassword", handleChangePassword);
+		WebsiteFramework::addPostHandleMap("/d/*/newThread", handleNewThread);
+		WebsiteFramework::addPostHandleMap("/d/*/thread/*/newComment", handleNewComment);
 		
-		WebsiteFramework::addPostHandleMap("/thread/*/reportThread", handleReportThread);
-		WebsiteFramework::addPostHandleMap("/thread/*/deleteThread", handleDeleteThread);
-		WebsiteFramework::addPostHandleMap("/thread/*/reportComment", handleReportComment);
-		WebsiteFramework::addPostHandleMap("/thread/*/deleteComment", handleDeleteComment);
-		WebsiteFramework::addPostHandleMap("/dismissReports", handleDismissReports);
+		WebsiteFramework::addPostHandleMap("/addAdministrator", handleAddAdministrator);
+		WebsiteFramework::addPostHandleMap("/removeAdministrator", handleRemoveAdministrator);
+		
+		WebsiteFramework::addPostHandleMap("/d/*/thread/*/reportThread", handleReportThread);
+		WebsiteFramework::addPostHandleMap("/d/*/thread/*/deleteThread", handleDeleteThread);
+		WebsiteFramework::addPostHandleMap("/d/*/thread/*/reportComment", handleReportComment);
+		WebsiteFramework::addPostHandleMap("/d/*/thread/*/deleteComment", handleDeleteComment);
+		WebsiteFramework::addPostHandleMap("/d/*/dismissReports", handleDismissReports);
 		
 		WebsiteFramework::run(":8222", std::thread::hardware_concurrency() * 16);
 		

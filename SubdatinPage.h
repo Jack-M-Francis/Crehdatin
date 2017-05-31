@@ -1,7 +1,5 @@
 #pragma once
 
-#include <memory>
-
 #include "Config.h"
 
 #include <cppconn/driver.h>
@@ -11,8 +9,9 @@
 #include <cppconn/prepared_statement.h>
 
 #include <WebsiteFramework/WebsiteFramework.h>
+#include "UserData.h"
 
-#include "SettingsPage.h"
-#include "InputHandler.h"
+#include "PageHeader.h"
+#include "PageFooter.h"
 
-void handleSetCssTheme(FcgiData* fcgi, std::vector<std::string> parameters, void* _data);
+void createSubdatinPage(FcgiData* fcgi, std::vector<std::string> parameters, void* _data);

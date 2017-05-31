@@ -1,7 +1,5 @@
 #pragma once
 
-#include <memory>
-
 #include "Config.h"
 
 #include <cppconn/driver.h>
@@ -9,14 +7,19 @@
 #include <cppconn/resultset.h>
 #include <cppconn/statement.h>
 #include <cppconn/prepared_statement.h>
+#include <string>
 
 #include <WebsiteFramework/WebsiteFramework.h>
-#include "RequestData.h"
-#include "PageHeader.h"
-#include "PageFooter.h"
 #include "UserData.h"
 
 #include "InputHandler.h"
+#include "StringHelper.h"
 
-void handleDeleteComment(FcgiData* fcgi, std::vector<std::string> parameters, void* _data);
-void handleDeleteCommentErrorPage(FcgiData* fcgi, RequestData* data, std::string error);
+#include "PageHeader.h"
+#include "PageFooter.h"
+
+#include "FormatPost.h"
+
+void createUserPage(FcgiData* fcgi, std::vector<std::string> parameters, void* _data);
+
+

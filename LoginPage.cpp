@@ -40,6 +40,7 @@ void createLoginPage(FcgiData* fcgi, RequestData* data, std::string loginError, 
 	"<input type='text' name='userName'>Username<br>"
 	"<input type='password' name='password'>Password<br>"
 	"<input type='password' name='repeatPassword'>Repeat Password<br>"
+	"<script src='https://www.google.com/recaptcha/api.js'></script>"
 	"<div class='g-recaptcha' data-sitekey='6LeYjR4UAAAAAExPuz3j60KPeea5jZ3zvd9KKR8b'></div>"
 	;
 	if(createAccountError != ""){
@@ -49,7 +50,7 @@ void createLoginPage(FcgiData* fcgi, RequestData* data, std::string loginError, 
 		"</div></p>";
 	}
 	fcgi->out <<
-	"<button type='submit' name='submit_param'>"
+	"<button type='submit'>"
 	"Create Account"
 	"</button>"
 	"</form>";

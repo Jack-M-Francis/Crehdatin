@@ -37,11 +37,11 @@ bool RainbowTextFormat::isValidBufferBegin(const std::string& buffer){
 	if(buffer.size() > 11){
 		return false;
 	}
-	return buffer == std::string("&amp;#%%^)*").substr(0, buffer.size());
+	return buffer == std::string("%%").substr(0, buffer.size());
 }
 
 bool RainbowTextFormat::isExactBufferBegin(const std::string& buffer){
-	return buffer == "&amp;#%%^)*";
+	return buffer == "%%";
 }
 
 std::string RainbowTextFormat::startTag(const std::string& buffer){
@@ -52,11 +52,11 @@ bool RainbowTextFormat::isValidBufferEnd(const std::string& buffer){
 	if(buffer.size() > 11){
 		return false;
 	}
-	return buffer == std::string("&amp;#%%^)*").substr(0, buffer.size());
+	return buffer == std::string("%%").substr(0, buffer.size());
 }
 
 bool RainbowTextFormat::isExactBufferEnd(const std::string& buffer){
-	return buffer == "&amp;#%%^)*";
+	return buffer == "%%";
 }
 
 std::string RainbowTextFormat::endTag(const std::string& buffer){
@@ -181,7 +181,7 @@ std::string formatUserPostBody(std::string body, std::string userPosition){
 	RainbowTextFormat rainbowTextFormat;
 	
 	std::vector<FormatPrimitive*> unusedFormats{&greenTextFormat, &italicFormat, &boldFormat, &hyperLinkFormat};
-	if(Config::hasRainbowTextPermissions(userPosition)){
+	if(hasRainbowTextPermissions(userPosition)){
 		unusedFormats.push_back(&rainbowTextFormat);
 	}
 	

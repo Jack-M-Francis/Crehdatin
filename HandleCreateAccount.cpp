@@ -11,7 +11,7 @@ void handleCreateAccount(FcgiData* fcgi, std::vector<std::string> parameters, vo
 	std::string authToken;
 	if(getPostValue(fcgi->cgi, authToken, "authToken", Config::getUniqueTokenLength(), InputFlag::AllowStrictOnly) != InputError::NoError 
 		|| authToken != data->authToken){
-		createLoginPage(fcgi, data, "Invalid Authentication Token", "");
+		createLoginPage(fcgi, data, "", "Invalid Authentication Token");
 		return;
 	}
 	
@@ -78,42 +78,36 @@ void handleCreateAccount(FcgiData* fcgi, std::vector<std::string> parameters, vo
 	std::string salt = generateRandomToken();
 	std::string hash = generateSecureHash(password, salt);
 	
-	sql::PreparedStatement* prepStmt = data->con->prepareStatement("INSERT INTO users "
+	std::unique_ptr<sql::PreparedStatement> prepStmt(data->con->prepareStatement("INSERT INTO users "
 				"(userName, passwordHash, passwordSalt) SELECT ?, ?, ? FROM DUAL WHERE NOT EXISTS "
-				"(SELECT id FROM users WHERE userName=?)");
+				"(SELECT id FROM users WHERE userName=?)"));
 	prepStmt->setString(1, userName);
 	prepStmt->setString(2, hash);
 	prepStmt->setString(3, salt);
 	prepStmt->setString(4, userName);
 	prepStmt->execute();
-	delete prepStmt;
 	
-	sql::ResultSet* res = data->stmt->executeQuery("SELECT ROW_COUNT()");
+	std::unique_ptr<sql::ResultSet> res(data->stmt->executeQuery("SELECT ROW_COUNT()"));
 	
 	res->first();
 	
 	int64_t rowCount = res->getInt64(1);
-	
-	delete res;
 	
 	if(rowCount == 0){
 		createLoginPage(fcgi, data, "", "User With That Name Already Exists");
 		return;
 	}
 	
-	res = data->stmt->executeQuery("SELECT LAST_INSERT_ID()");
+	res = std::unique_ptr<sql::ResultSet>(data->stmt->executeQuery("SELECT LAST_INSERT_ID()"));
 	
 	res->first();
 	
 	int64_t userId = res->getInt64(1);
 	
-	delete res;
-	
-	prepStmt = data->con->prepareStatement("UPDATE sessions SET userId=?, shownId=NULL WHERE sessionToken=?");
+	prepStmt = std::unique_ptr<sql::PreparedStatement>(data->con->prepareStatement("UPDATE sessions SET userId=?, shownId=NULL WHERE sessionToken=?"));
 	prepStmt->setInt64(1, userId);
 	prepStmt->setString(2, data->sessionToken);
 	prepStmt->execute();
-	delete prepStmt;
 	
 	sendStatusHeader(fcgi->out, StatusCode::SeeOther);
 	sendLocationHeader(fcgi->out, "https://" + Config::getDomain() + "/");

@@ -27,11 +27,10 @@ void handleLogout(FcgiData* fcgi, std::vector<std::string> parameters, void* _da
 	
 	std::string shownId = generateRandomToken().substr(0, 12);
 	
-	sql::PreparedStatement* prepStmt = data->con->prepareStatement("UPDATE sessions SET userId=NULL, shownId=? WHERE sessionToken=?");
+	std::unique_ptr<sql::PreparedStatement> prepStmt(data->con->prepareStatement("UPDATE sessions SET userId=NULL, shownId=? WHERE sessionToken=?"));
 	prepStmt->setString(1, shownId);
 	prepStmt->setString(2, data->sessionToken);
 	prepStmt->execute();
-	delete prepStmt;
 	
 	sendStatusHeader(fcgi->out, StatusCode::SeeOther);
 	sendLocationHeader(fcgi->out, "https://" + Config::getDomain() + "/");

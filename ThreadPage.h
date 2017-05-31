@@ -21,8 +21,8 @@
 #include "FormatPost.h"
 
 void createThreadPage(FcgiData* fcgi, std::vector<std::string> parameters, void* _data);
-void createCommentLine(FcgiData* fcgi, RequestData* data, std::string& threadId, int64_t layer = 0, int64_t parentId = -1);
-void createReportMenu(FcgiData* fcgi, RequestData* data, std::string& threadId, int64_t commentId = -1);
-void createReplyMenu(FcgiData* fcgi, RequestData* data, std::string& threadId, int64_t commentId = -1);
+void createCommentLine(FcgiData* fcgi, RequestData* data, std::string& threadId, int64_t subdatinId, bool canReply, std::string& subdatinTitle, int64_t layer = 0, int64_t parentId = -1);
+void createReportMenu(FcgiData* fcgi, RequestData* data, std::string& threadId, std::string& subdatinTitle, int64_t commentId = -1);
+void createReplyMenu(FcgiData* fcgi, RequestData* data, std::string& threadId, std::string& subdatinTitle, int64_t commentId = -1);
 
 

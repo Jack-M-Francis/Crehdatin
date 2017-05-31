@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #include "Config.h"
 
 #include <cppconn/driver.h>

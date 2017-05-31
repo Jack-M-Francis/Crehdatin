@@ -60,21 +60,3 @@ int64_t Config::userReportingTimeout(){
 std::size_t Config::getMaxReportLength(){
 	return 100;
 }
-
-bool Config::hasDeletePermissions(std::string& position){
-	if(position == "moderator" || position == "admin" || position == "senate"){
-		return true;
-	}
-	else{
-		return false;
-	}
-}
-
-bool Config::hasRainbowTextPermissions(std::string& position){
-	if(position == "moderator" || position == "admin" || position == "senate"){
-		return true;
-	}
-	else{
-		return false;
-	}
-}

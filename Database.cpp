@@ -81,7 +81,29 @@ bool Database::createDatabase(){
 	"cssTheme TEXT DEFAULT NULL,"
 	"createdTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,"
 	"lastPostTime TIMESTAMP NULL"
-	")");
+	") ENGINE = InnoDB");
+	
+	stmt->execute("CREATE TABLE subdatins("
+	"id BIGINT NOT NULL AUTO_INCREMENT,"
+	"PRIMARY KEY (id),"
+	"title TEXT NOT NULL,"
+	"name TEXT NOT NULL,"
+	"postLocked BOOL NOT NULL DEFAULT FALSE,"
+	"commentLocked BOOL NOT NULL DEFAULT FALSE,"
+	"createdTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP"
+	") ENGINE = InnoDB");
+	
+	stmt->execute("CREATE TABLE userPositions("
+	"id BIGINT NOT NULL AUTO_INCREMENT,"
+	"PRIMARY KEY (id),"
+	"userId BIGINT NOT NULL,"
+	"INDEX (userId),"
+	"FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE,"
+	"subdatinId BIGINT NOT NULL,"
+	"INDEX (subdatinId),"
+	"FOREIGN KEY (subdatinId) REFERENCES subdatins(id) ON DELETE CASCADE,"
+	"userPosition TEXT NOT NULL"
+	") ENGINE = InnoDB");
 	
 	stmt->execute("CREATE TABLE sessions("
 	"id BIGINT NOT NULL AUTO_INCREMENT,"
@@ -93,7 +115,7 @@ bool Database::createDatabase(){
 	"FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE,"
 	"shownId TEXT(12) DEFAULT NULL,"
 	"createdTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP"
-	")");
+	") ENGINE = InnoDB");
 	
 	stmt->execute("CREATE TABLE threads("
 	"id BIGINT NOT NULL AUTO_INCREMENT,"
@@ -102,10 +124,15 @@ bool Database::createDatabase(){
 	"body TEXT NOT NULL,"
 	"anonId TEXT DEFAULT NULL,"
 	"userId BIGINT DEFAULT NULL,"
+	"stickied BOOL NOT NULL DEFAULT FALSE,"
+	"locked BOOL NOT NULL DEFAULT FALSE,"
 	"posterIp TEXT NOT NULL,"
+	"subdatinId BIGINT NOT NULL,"
+	"INDEX (subdatinId),"
+	"FOREIGN KEY (subdatinId) REFERENCES subdatins(id) ON DELETE CASCADE,"
 	"createdTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,"
 	"lastBumpTime TIMESTAMP NOT NULL"
-	")");
+	") ENGINE = InnoDB");
 	
 	stmt->execute("CREATE TABLE comments("
 	"id BIGINT NOT NULL AUTO_INCREMENT,"
@@ -113,7 +140,12 @@ bool Database::createDatabase(){
 	"body TEXT NOT NULL,"
 	"anonId TEXT DEFAULT NULL,"
 	"userId BIGINT DEFAULT NULL,"
+	"sticked BOOL NOT NULL DEFAULT FALSE,"
+	"removed BOOL NOT NULL DEFAULT FALSE,"
 	"posterIp TEXT NOT NULL,"
+	"subdatinId BIGINT NOT NULL,"
+	"INDEX (subdatinId),"
+	"FOREIGN KEY (subdatinId) REFERENCES subdatins(id) ON DELETE CASCADE,"
 	"threadId BIGINT NOT NULL,"
 	"INDEX (threadId),"
 	"FOREIGN KEY (threadId) REFERENCES threads(id) ON DELETE CASCADE,"
@@ -121,19 +153,35 @@ bool Database::createDatabase(){
 	"INDEX (parentId),"
 	"FOREIGN KEY (parentId) REFERENCES comments(id) ON DELETE CASCADE,"
 	"createdTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP"
-	")");
+	") ENGINE = InnoDB");
+	
+	/*
+	stmt->execute("CREATE TABLE watchers("
+	"id BIGINT NOT NULL AUTO_INCREMENT,"
+	"PRIMARY KEY (id),"
+	"threadId BIGINT DEFAULT NULL,"
+	"FOREIGN KEY (threadId) REFERENCES thread(id) ON DELETE CASECADE,"
+	"commentId BIGINT DEFAULT NULL,"
+	"FOREIGN KEY (commentId) REFERENCES comments(id) ON DELETE CASCADE,"
+	"userId BIGINT DEFAULT NULL,"
+	"FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE"
+	") ENGINE = InnoDB");
+	*/
 	
 	stmt->execute("CREATE TABLE ips("
 	"ip TEXT NOT NULL,"
 	"PRIMARY KEY (ip(50)),"
 	"blocked BOOL NOT NULL DEFAULT FALSE,"
 	"lastPostTime TIMESTAMP NOT NULL"
-	")");
+	") ENGINE = InnoDB");
 	
 	stmt->execute("CREATE TABLE reports("
 	"id BIGINT NOT NULL AUTO_INCREMENT,"
 	"PRIMARY KEY (id),"
 	"reason TEXT NOT NULL,"
+	"subdatinId BIGINT NOT NULL,"
+	"INDEX (subdatinId),"
+	"FOREIGN KEY (subdatinId) REFERENCES subdatins(id) ON DELETE CASCADE,"
 	"threadId BIGINT DEFAULT NULL,"
 	"FOREIGN KEY (threadId) REFERENCES threads(id) ON DELETE CASCADE,"
 	"commentId BIGINT DEFAULT NULL,"
@@ -142,7 +190,7 @@ bool Database::createDatabase(){
 	"userId BIGINT DEFAULT NULL,"
 	"FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE,"
 	"createdTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP"
-	")");
+	") ENGINE = InnoDB");
 	
 	stmt->execute("GRANT ALL ON " + Config::getSqlDatabaseName() + ".* TO '" + Config::getSqlUserName() + "'@'localhost'");
 	

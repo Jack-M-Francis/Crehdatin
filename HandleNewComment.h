@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #include "Config.h"
 
 #include <cppconn/driver.h>
@@ -17,4 +19,4 @@
 #include "InputHandler.h"
 
 void handleNewComment(FcgiData* fcgi, std::vector<std::string> parameters, void* _data);
-void handleNewCommentErrorPage(FcgiData* fcgi, RequestData* data, std::string error);
+void handleNewCommentErrorPage(FcgiData* fcgi, RequestData* data, int64_t subdatinId, std::string error);

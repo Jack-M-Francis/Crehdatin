@@ -1,7 +1,5 @@
 #pragma once
 
-#include <memory>
-
 #include "Config.h"
 
 #include <cppconn/driver.h>
@@ -14,8 +12,6 @@
 
 #include "LoginPage.h"
 #include "InputHandler.h"
-#include "Cryptography.h"
-#include "Recaptcha.h"
 
-void handleCreateAccount(FcgiData* fcgi, std::vector<std::string> parameters, void* _data);
-void createCreateAccountPageHandle(FcgiData* fcgi, std::vector<std::string> parameters, void* _data);
+void handleAddAdministrator(FcgiData* fcgi, std::vector<std::string> parameters, void* _data);
+void createAddAdministratorErrorPage(FcgiData* fcgi, RequestData* data, std::string error);

@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "Config.h"
+#include "UserPermissions.h"
 
 class FormatPrimitive{
 public:

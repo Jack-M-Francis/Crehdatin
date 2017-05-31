@@ -3,39 +3,33 @@
 bool requestStartHandle(FcgiData* fcgi, void* _data){
 	RequestData* data = (RequestData*)_data;
 	
-	sql::ResultSet* res = data->stmt->executeQuery("SELECT UNIX_TIMESTAMP(CURRENT_TIMESTAMP)");
+	std::unique_ptr<sql::ResultSet> res(data->stmt->executeQuery("SELECT UNIX_TIMESTAMP(CURRENT_TIMESTAMP)"));
 	
 	res->first();
 	
 	data->currentTime = res->getInt64(1);
-	
-	delete res;
 	
 	data->sessionToken = "";
 	data->userName = "";
 	data->userId = -1;
 	data->authToken = "";
 	data->shownId = "";
-	data->userPosition = "";
 	data->cssTheme = "dark";
 	data->blocked = false;
 	data->lastPostTime = 0;
 	
-	sql::PreparedStatement* prepStmt = data->con->prepareStatement("SELECT " 
+	std::unique_ptr<sql::PreparedStatement> prepStmt(data->con->prepareStatement("SELECT " 
 	"blocked, UNIX_TIMESTAMP(lastPostTime) "
 	"FROM ips "
-	"WHERE ip = ?");
+	"WHERE ip = ?"));
 	prepStmt->setString(1, fcgi->env->getRemoteAddr());
-	res = prepStmt->executeQuery();
+	res = std::unique_ptr<sql::ResultSet>(prepStmt->executeQuery());
 	res->beforeFirst();
 	
 	if(res->next()){
 		data->blocked = res->getBoolean("blocked");
 		data->lastPostTime = res->getInt64("UNIX_TIMESTAMP(lastPostTime)");
 	}
-	
-	delete res;
-	delete prepStmt;
 	
 	if(data->blocked){
 		sendStatusHeader(fcgi->out, StatusCode::Ok);
@@ -68,35 +62,31 @@ bool requestStartHandle(FcgiData* fcgi, void* _data){
 }
 
 bool getUserRequestData(FcgiData* fcgi, RequestData* data, std::string sessionToken){
-	sql::PreparedStatement* prepStmt = data->con->prepareStatement("SELECT " 
+	std::unique_ptr<sql::PreparedStatement> prepStmt(data->con->prepareStatement("SELECT " 
 	"id, userId, authToken, shownId "
 	"FROM sessions "
-	"WHERE sessionToken = ?");
+	"WHERE sessionToken = ?"));
 	prepStmt->setString(1, sessionToken);
-	sql::ResultSet* res = prepStmt->executeQuery();
+	std::unique_ptr<sql::ResultSet> res(prepStmt->executeQuery());
 	res->beforeFirst();
 	if(res->next()){
 		data->sessionToken = sessionToken;
 		if(!res->isNull("userId")){
 			data->userId = res->getInt64("userId");
 			
-			sql::PreparedStatement* prepStmtB = data->con->prepareStatement("SELECT " 
-			"userName, userPosition, cssTheme, UNIX_TIMESTAMP(lastPostTime) "
+			std::unique_ptr<sql::PreparedStatement> prepStmtB(data->con->prepareStatement("SELECT " 
+			"userName, cssTheme, UNIX_TIMESTAMP(lastPostTime) "
 			"FROM users "
-			"WHERE id = ?");
+			"WHERE id = ?"));
 			
 			prepStmtB->setInt64(1, data->userId);
 			
-			sql::ResultSet* resB = prepStmtB->executeQuery();
+			std::unique_ptr<sql::ResultSet> resB(prepStmtB->executeQuery());
 			
 			resB->beforeFirst();
 			
 			if(resB->next()){
 				data->userName = resB->getString("userName");
-				
-				if(resB->isNull("userPosition") == false){
-					data->userPosition = resB->getString("userPosition");
-				}
 				
 				if(resB->isNull("cssTheme") == false){
 					data->cssTheme = resB->getString("cssTheme");
@@ -105,15 +95,8 @@ bool getUserRequestData(FcgiData* fcgi, RequestData* data, std::string sessionTo
 				if(resB->isNull("UNIX_TIMESTAMP(lastPostTime)") == false){
 					data->lastPostTime = resB->getInt64("UNIX_TIMESTAMP(lastPostTime)");
 				}
-				
-				delete resB;
-				delete prepStmtB;
 			}
 			else{
-				delete resB;
-				delete prepStmtB;
-				delete res;
-				delete prepStmt;
 				sendStatusHeader(fcgi->out, StatusCode::Ok);
 				sendHtmlContentTypeHeader(fcgi->out);
 				sendDeleteCookieHeader(fcgi->out, "sessionToken");
@@ -127,15 +110,13 @@ bool getUserRequestData(FcgiData* fcgi, RequestData* data, std::string sessionTo
 			data->shownId = res->getString("shownId");
 		}
 	}
-	delete res;
-	delete prepStmt;
 	return true;
 }
 
 void createNewSession(RequestData* data){
-	sql::PreparedStatement* prepStmt = data->con->prepareStatement("INSERT INTO sessions "
+	std::unique_ptr<sql::PreparedStatement> prepStmt(data->con->prepareStatement("INSERT INTO sessions "
 	"(sessionToken, authToken, shownId) SELECT ?, ?, ? FROM DUAL WHERE NOT EXISTS "
-	"(SELECT id FROM sessions WHERE sessionToken=? OR authToken=? OR shownId=?)");
+	"(SELECT id FROM sessions WHERE sessionToken=? OR authToken=? OR shownId=?)"));
 	
 	int64_t rowCount;
 	
@@ -152,15 +133,11 @@ void createNewSession(RequestData* data){
 		prepStmt->setString(6, data->shownId);
 		prepStmt->execute();
 		
-		sql::ResultSet* res = data->stmt->executeQuery("SELECT ROW_COUNT()");
+		std::unique_ptr<sql::ResultSet> res(data->stmt->executeQuery("SELECT ROW_COUNT()"));
 		
 		res->first();
 		
 		rowCount = res->getInt64(1);
 		
-		delete res;
-		
 	}while(rowCount == 0);
-	
-	delete prepStmt;
 }

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1495934236 source:/home/daniel/Projects/codeblocks/Crehdatin/main.cpp
+1496184483 source:/home/daniel/Projects/codeblocks/Crehdatin/main.cpp
 	<iostream>
 	<thread>
 	<vector>
@@ -18,21 +18,28 @@
 	"RequestData.h"
 	"Response.h"
 	"MainPage.h"
+	"SubdatinPage.h"
 	"LoginPage.h"
 	"SettingsPage.h"
 	"NewThreadPage.h"
 	"ThreadPage.h"
+	"ReportsPage.h"
+	"UserPage.h"
+	"SubdatinControlPanelPage.h"
+	"CrehdatinControlPanelPage.h"
 	"HandleCreateAccount.h"
 	"HandleLogin.h"
 	"HandleLogout.h"
 	"HandleNewThread.h"
 	"HandleNewComment.h"
 	"HandleSetCssTheme.h"
+	"HandleChangePassword.h"
+	"HandleAddAdministrator.h"
+	"HandleRemoveAdministrator.h"
 	"HandleReportThread.h"
 	"HandleDeleteThread.h"
 	"HandleReportComment.h"
 	"HandleDeleteComment.h"
-	"ReportsPage.h"
 	"HandleDismissReports.h"
 	"RequestStartHandle.h"
 	"Recaptcha.h"
@@ -59,13 +66,13 @@
 	<cgicc/HTMLDoctype.h>
 	<cgicc/HTMLClasses.h>
 
-1495931323 source:/home/daniel/Projects/codeblocks/Crehdatin/Config.cpp
+1496014849 source:/home/daniel/Projects/codeblocks/Crehdatin/Config.cpp
 	"Config.h"
 
-1495228795 /home/daniel/Projects/codeblocks/Crehdatin/Config.h
+1496014850 /home/daniel/Projects/codeblocks/Crehdatin/Config.h
 	<string>
 
-1494629995 source:/home/daniel/Projects/codeblocks/Crehdatin/Database.cpp
+1496022281 source:/home/daniel/Projects/codeblocks/Crehdatin/Database.cpp
 	"Database.h"
 
 1494558718 /home/daniel/Projects/codeblocks/Crehdatin/Database.h
@@ -77,7 +84,8 @@
 	<cppconn/prepared_statement.h>
 	<iostream>
 
-1494558878 /home/daniel/Projects/codeblocks/Crehdatin/MainPage.h
+1496004605 /home/daniel/Projects/codeblocks/Crehdatin/MainPage.h
+	<memory>
 	"Config.h"
 	<cppconn/driver.h>
 	<cppconn/exception.h>
@@ -89,13 +97,13 @@
 	"PageHeader.h"
 	"PageFooter.h"
 
-1494632618 source:/home/daniel/Projects/codeblocks/Crehdatin/MainPage.cpp
+1496100303 source:/home/daniel/Projects/codeblocks/Crehdatin/MainPage.cpp
 	"MainPage.h"
 
 1492919624 source:/home/daniel/Projects/codeblocks/Crehdatin/RequestData.cpp
 	"RequestData.h"
 
-1494629406 /home/daniel/Projects/codeblocks/Crehdatin/RequestData.h
+1496020502 /home/daniel/Projects/codeblocks/Crehdatin/RequestData.h
 	"Config.h"
 	<cppconn/driver.h>
 	<cppconn/exception.h>
@@ -117,23 +125,26 @@
 	<tgmath.h>
 	"Config.h"
 
-1494558919 /home/daniel/Projects/codeblocks/Crehdatin/PageHeader.h
+1496026455 /home/daniel/Projects/codeblocks/Crehdatin/PageHeader.h
 	<WebsiteFramework/WebsiteFramework.h>
 	"RequestData.h"
 	"Response.h"
 	"InputHandler.h"
+	"SubdatinData.h"
+	"UserData.h"
+	"UserPermissions.h"
 
 1494558977 /home/daniel/Projects/codeblocks/Crehdatin/Response.h
 	<fcgio.h>
 	"Config.h"
 
-1494636322 source:/home/daniel/Projects/codeblocks/Crehdatin/PageHeader.cpp
+1496106695 source:/home/daniel/Projects/codeblocks/Crehdatin/PageHeader.cpp
 	"PageHeader.h"
 
 1494558971 source:/home/daniel/Projects/codeblocks/Crehdatin/Response.cpp
 	"Response.h"
 
-1494636559 source:/home/daniel/Projects/codeblocks/Crehdatin/LoginPage.cpp
+1496182641 source:/home/daniel/Projects/codeblocks/Crehdatin/LoginPage.cpp
 	"LoginPage.h"
 
 1494558874 /home/daniel/Projects/codeblocks/Crehdatin/LoginPage.h
@@ -155,10 +166,11 @@
 1494626566 source:/home/daniel/Projects/codeblocks/Crehdatin/PageFooter.cpp
 	"PageFooter.h"
 
-1495931474 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleCreateAccount.cpp
+1496021431 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleCreateAccount.cpp
 	"HandleCreateAccount.h"
 
-1494558724 /home/daniel/Projects/codeblocks/Crehdatin/HandleCreateAccount.h
+1496003540 /home/daniel/Projects/codeblocks/Crehdatin/HandleCreateAccount.h
+	<memory>
 	"Config.h"
 	<cppconn/driver.h>
 	<cppconn/exception.h>
@@ -182,7 +194,7 @@
 1494716898 source:/home/daniel/Projects/codeblocks/Crehdatin/InputHandler.cpp
 	"InputHandler.h"
 
-1495853292 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleLogin.cpp
+1496003922 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleLogin.cpp
 	"HandleLogin.h"
 
 1494558781 /home/daniel/Projects/codeblocks/Crehdatin/HandleLogin.h
@@ -197,10 +209,11 @@
 	"InputHandler.h"
 	"Cryptography.h"
 
-1494558789 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleLogout.cpp
+1496003979 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleLogout.cpp
 	"HandleLogin.h"
 
-1494558789 /home/daniel/Projects/codeblocks/Crehdatin/HandleLogout.h
+1496003972 /home/daniel/Projects/codeblocks/Crehdatin/HandleLogout.h
+	<memory>
 	"Config.h"
 	<cppconn/driver.h>
 	<cppconn/exception.h>
@@ -234,8 +247,10 @@
 	"PageHeader.h"
 	"PageFooter.h"
 
-1494558898 /home/daniel/Projects/codeblocks/Crehdatin/NewThreadPage.h
+1496009024 /home/daniel/Projects/codeblocks/Crehdatin/NewThreadPage.h
 	"Config.h"
+	"SubdatinData.h"
+	"UserData.h"
 	<cppconn/driver.h>
 	<cppconn/exception.h>
 	<cppconn/resultset.h>
@@ -245,13 +260,14 @@
 	"PageHeader.h"
 	"PageFooter.h"
 
-1494636572 source:/home/daniel/Projects/codeblocks/Crehdatin/NewThreadPage.cpp
+1496105906 source:/home/daniel/Projects/codeblocks/Crehdatin/NewThreadPage.cpp
 	"NewThreadPage.h"
 
-1494558819 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleNewThread.cpp
+1496105153 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleNewThread.cpp
 	"HandleNewThread.h"
 
-1494558819 /home/daniel/Projects/codeblocks/Crehdatin/HandleNewThread.h
+1496004180 /home/daniel/Projects/codeblocks/Crehdatin/HandleNewThread.h
+	<memory>
 	"Config.h"
 	<cppconn/driver.h>
 	<cppconn/exception.h>
@@ -263,7 +279,7 @@
 	"InputHandler.h"
 	"UserData.h"
 
-1495059718 /home/daniel/Projects/codeblocks/Crehdatin/ThreadPage.h
+1496099541 /home/daniel/Projects/codeblocks/Crehdatin/ThreadPage.h
 	"Config.h"
 	<cppconn/driver.h>
 	<cppconn/exception.h>
@@ -290,28 +306,31 @@
 	<string>
 	<mutex>
 
-1495228855 source:/home/daniel/Projects/codeblocks/Crehdatin/ThreadPage.cpp
+1496105153 source:/home/daniel/Projects/codeblocks/Crehdatin/ThreadPage.cpp
 	"ThreadPage.h"
 
-1494618608 /home/daniel/Projects/codeblocks/Crehdatin/UserData.h
+1496183896 /home/daniel/Projects/codeblocks/Crehdatin/UserData.h
+	<memory>
 	"Config.h"
+	"UserPermissions.h"
+	"RequestData.h"
+	"InputHandler.h"
+	<WebsiteFramework/WebsiteFramework.h>
 	<cppconn/driver.h>
 	<cppconn/exception.h>
 	<cppconn/resultset.h>
 	<cppconn/statement.h>
 	<cppconn/prepared_statement.h>
 	<string>
-	<WebsiteFramework/WebsiteFramework.h>
-	"RequestData.h"
-	"InputHandler.h"
 
-1494630075 source:/home/daniel/Projects/codeblocks/Crehdatin/UserData.cpp
+1496184136 source:/home/daniel/Projects/codeblocks/Crehdatin/UserData.cpp
 	"UserData.h"
 
-1494558793 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleNewComment.cpp
+1496105153 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleNewComment.cpp
 	"HandleNewComment.h"
 
-1494558809 /home/daniel/Projects/codeblocks/Crehdatin/HandleNewComment.h
+1496098238 /home/daniel/Projects/codeblocks/Crehdatin/HandleNewComment.h
+	<memory>
 	"Config.h"
 	<cppconn/driver.h>
 	<cppconn/exception.h>
@@ -325,10 +344,11 @@
 	"UserData.h"
 	"InputHandler.h"
 
-1494558833 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleReportThread.cpp
+1496085299 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleReportThread.cpp
 	"HandleReportThread.h"
 
-1494558842 /home/daniel/Projects/codeblocks/Crehdatin/HandleReportThread.h
+1496004519 /home/daniel/Projects/codeblocks/Crehdatin/HandleReportThread.h
+	<memory>
 	"Config.h"
 	<cppconn/driver.h>
 	<cppconn/exception.h>
@@ -342,7 +362,7 @@
 	"UserData.h"
 	"InputHandler.h"
 
-1494558825 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleReportComment.cpp
+1496085325 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleReportComment.cpp
 	"HandleReportComment.h"
 
 1494558828 /home/daniel/Projects/codeblocks/Crehdatin/HandleReportComment.h
@@ -359,10 +379,11 @@
 	"UserData.h"
 	"InputHandler.h"
 
-1494558748 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleDeleteThread.cpp
+1496105153 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleDeleteThread.cpp
 	"HandleDeleteThread.h"
 
-1494558759 /home/daniel/Projects/codeblocks/Crehdatin/HandleDeleteThread.h
+1496003651 /home/daniel/Projects/codeblocks/Crehdatin/HandleDeleteThread.h
+	<memory>
 	"Config.h"
 	<cppconn/driver.h>
 	<cppconn/exception.h>
@@ -376,10 +397,11 @@
 	"UserData.h"
 	"InputHandler.h"
 
-1494558737 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleDeleteComment.cpp
+1496105153 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleDeleteComment.cpp
 	"HandleDeleteComment.h"
 
-1494558743 /home/daniel/Projects/codeblocks/Crehdatin/HandleDeleteComment.h
+1496003554 /home/daniel/Projects/codeblocks/Crehdatin/HandleDeleteComment.h
+	<memory>
 	"Config.h"
 	<cppconn/driver.h>
 	<cppconn/exception.h>
@@ -393,10 +415,11 @@
 	"UserData.h"
 	"InputHandler.h"
 
-1495228746 source:/home/daniel/Projects/codeblocks/Crehdatin/ReportsPage.cpp
+1496105153 source:/home/daniel/Projects/codeblocks/Crehdatin/ReportsPage.cpp
 	"ReportsPage.h"
 
-1494558952 /home/daniel/Projects/codeblocks/Crehdatin/ReportsPage.h
+1496025884 /home/daniel/Projects/codeblocks/Crehdatin/ReportsPage.h
+	<memory>
 	"Config.h"
 	<cppconn/driver.h>
 	<cppconn/exception.h>
@@ -409,10 +432,11 @@
 	"PageHeader.h"
 	"PageFooter.h"
 
-1494558764 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleDismissReports.cpp
+1496105153 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleDismissReports.cpp
 	"HandleDismissReports.h"
 
-1494558770 /home/daniel/Projects/codeblocks/Crehdatin/HandleDismissReports.h
+1496003840 /home/daniel/Projects/codeblocks/Crehdatin/HandleDismissReports.h
+	<memory>
 	"Config.h"
 	<cppconn/driver.h>
 	<cppconn/exception.h>
@@ -454,10 +478,11 @@
 1494897433 source:/home/daniel/Projects/codeblocks/Crehdatin/SettingsPage.cpp
 	"SettingsPage.h"
 
-1494897465 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleSetCssTheme.cpp
+1496004549 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleSetCssTheme.cpp
 	"HandleSetCssTheme.h"
 
-1494638230 /home/daniel/Projects/codeblocks/Crehdatin/HandleSetCssTheme.h
+1496004528 /home/daniel/Projects/codeblocks/Crehdatin/HandleSetCssTheme.h
+	<memory>
 	"Config.h"
 	<cppconn/driver.h>
 	<cppconn/exception.h>
@@ -468,16 +493,18 @@
 	"SettingsPage.h"
 	"InputHandler.h"
 
-1495228812 /home/daniel/Projects/codeblocks/Crehdatin/FormatPost.h
+1496020435 /home/daniel/Projects/codeblocks/Crehdatin/FormatPost.h
 	"StringHelper.h"
 	<stack>
 	<vector>
 	"Config.h"
+	"UserPermissions.h"
 
-1495226337 source:/home/daniel/Projects/codeblocks/Crehdatin/FormatPost.cpp
+1496020406 source:/home/daniel/Projects/codeblocks/Crehdatin/FormatPost.cpp
 	"FormatPost.h"
 
-1495942793 /home/daniel/Projects/codeblocks/Crehdatin/RequestStartHandle.h
+1496005136 /home/daniel/Projects/codeblocks/Crehdatin/RequestStartHandle.h
+	<memory>
 	"Config.h"
 	<cppconn/driver.h>
 	<cppconn/exception.h>
@@ -488,7 +515,7 @@
 	"RequestData.h"
 	"Cryptography.h"
 
-1495858148 source:/home/daniel/Projects/codeblocks/Crehdatin/RequestStartHandle.cpp
+1496020488 source:/home/daniel/Projects/codeblocks/Crehdatin/RequestStartHandle.cpp
 	"RequestStartHandle.h"
 
 1495934190 /home/daniel/Projects/codeblocks/Crehdatin/scrypt/crypto_scrypt.h
@@ -583,4 +610,140 @@
 	<string.h>
 	"sysendian.h"
 	"sha256.h"
+
+1496002114 /home/daniel/Projects/codeblocks/Crehdatin/SubdatinPage.h
+	"Config.h"
+	<cppconn/driver.h>
+	<cppconn/exception.h>
+	<cppconn/resultset.h>
+	<cppconn/statement.h>
+	<cppconn/prepared_statement.h>
+	<WebsiteFramework/WebsiteFramework.h>
+	"UserData.h"
+	"PageHeader.h"
+	"PageFooter.h"
+
+1496100527 source:/home/daniel/Projects/codeblocks/Crehdatin/SubdatinPage.cpp
+	"SubdatinPage.h"
+
+1496003236 source:/home/daniel/Projects/codeblocks/Crehdatin/SubdatinData.cpp
+	"SubdatinData.h"
+
+1496007630 /home/daniel/Projects/codeblocks/Crehdatin/SubdatinData.h
+	"Config.h"
+	<cppconn/driver.h>
+	<cppconn/exception.h>
+	<cppconn/resultset.h>
+	<cppconn/statement.h>
+	<cppconn/prepared_statement.h>
+	<string>
+	<memory>
+	<WebsiteFramework/WebsiteFramework.h>
+	"RequestData.h"
+	"InputHandler.h"
+
+1496105927 /home/daniel/Projects/codeblocks/Crehdatin/UserPermissions.h
+	<memory>
+	"Config.h"
+	<cppconn/driver.h>
+	<cppconn/exception.h>
+	<cppconn/resultset.h>
+	<cppconn/statement.h>
+	<cppconn/prepared_statement.h>
+	<string>
+	"UserData.h"
+
+1496027892 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleChangePassword.cpp
+	"HandleChangePassword.h"
+
+1496021388 /home/daniel/Projects/codeblocks/Crehdatin/HandleChangePassword.h
+	<memory>
+	"Config.h"
+	<cppconn/driver.h>
+	<cppconn/exception.h>
+	<cppconn/resultset.h>
+	<cppconn/statement.h>
+	<cppconn/prepared_statement.h>
+	<WebsiteFramework/WebsiteFramework.h>
+	"InputHandler.h"
+	"Cryptography.h"
+	"SettingsPage.h"
+
+1496106405 source:/home/daniel/Projects/codeblocks/Crehdatin/UserPermissions.cpp
+	"UserPermissions.h"
+
+1496101035 /home/daniel/Projects/codeblocks/Crehdatin/UserPage.h
+	"Config.h"
+	<cppconn/driver.h>
+	<cppconn/exception.h>
+	<cppconn/resultset.h>
+	<cppconn/statement.h>
+	<cppconn/prepared_statement.h>
+	<string>
+	<WebsiteFramework/WebsiteFramework.h>
+	"UserData.h"
+	"InputHandler.h"
+	"StringHelper.h"
+	"PageHeader.h"
+	"PageFooter.h"
+	"FormatPost.h"
+
+1496101052 source:/home/daniel/Projects/codeblocks/Crehdatin/UserPage.cpp
+	"UserPage.h"
+
+1496107347 /home/daniel/Projects/codeblocks/Crehdatin/SubdatinControlPanelPage.h
+	"Config.h"
+	<cppconn/driver.h>
+	<cppconn/exception.h>
+	<cppconn/resultset.h>
+	<cppconn/statement.h>
+	<cppconn/prepared_statement.h>
+	<WebsiteFramework/WebsiteFramework.h>
+	"PageHeader.h"
+	"PageFooter.h"
+
+1496107002 /home/daniel/Projects/codeblocks/Crehdatin/CrehdatinControlPanelPage.h
+	"Config.h"
+	<cppconn/driver.h>
+	<cppconn/exception.h>
+	<cppconn/resultset.h>
+	<cppconn/statement.h>
+	<cppconn/prepared_statement.h>
+	<WebsiteFramework/WebsiteFramework.h>
+	"PageHeader.h"
+	"PageFooter.h"
+
+1496184648 source:/home/daniel/Projects/codeblocks/Crehdatin/CrehdatinControlPanelPage.cpp
+	"CrehdatinControlPanelPage.h"
+
+1496112389 source:/home/daniel/Projects/codeblocks/Crehdatin/SubdatinControlPanelPage.cpp
+	"SubdatinControlPanelPage.h"
+
+1496184582 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleAddAdministrator.cpp
+	"HandleAddAdministrator.h"
+
+1496184026 /home/daniel/Projects/codeblocks/Crehdatin/HandleAddAdministrator.h
+	"Config.h"
+	<cppconn/driver.h>
+	<cppconn/exception.h>
+	<cppconn/resultset.h>
+	<cppconn/statement.h>
+	<cppconn/prepared_statement.h>
+	<WebsiteFramework/WebsiteFramework.h>
+	"LoginPage.h"
+	"InputHandler.h"
+
+1496184365 /home/daniel/Projects/codeblocks/Crehdatin/HandleRemoveAdministrator.h
+	"Config.h"
+	<cppconn/driver.h>
+	<cppconn/exception.h>
+	<cppconn/resultset.h>
+	<cppconn/statement.h>
+	<cppconn/prepared_statement.h>
+	<WebsiteFramework/WebsiteFramework.h>
+	"LoginPage.h"
+	"InputHandler.h"
+
+1496184441 source:/home/daniel/Projects/codeblocks/Crehdatin/HandleRemoveAdministrator.cpp
+	"HandleRemoveAdministrator.h"
 
