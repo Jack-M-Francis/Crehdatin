@@ -33,7 +33,7 @@ It outranks administrators and is the only position able to add and remove admin
 An Administrator, or "admin" for short, is a user that outranks bureaucrats.
 They have control over all other subdatins, but this power is not normally used.
 They are also able to moderate on other subdatins and answer reports, but this is not normally used.
-An administrator title is somebody who programs or otherwise maintains the site.
+An administrator title is given to somebody who programs or otherwise maintains the site.
 They should not mess with the affairs of the subdatins, their main priority is maintaining the site by fixing bugs and adding new features.
 
 "administrator" is the official name used in the code.
