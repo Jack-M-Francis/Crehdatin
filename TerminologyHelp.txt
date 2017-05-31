@@ -2,7 +2,7 @@
 This is a little help document that clarifies what some of the terminology used on the website is and to explain the purpose of the various roles.
 
 #Crehdatin vs. Creh-Datin
-Crehdaitn is the official name of the website.
+Crehdatin is the official name of the website.
 Creh-Datin is only used as the "name" of the website(and the discord) because it makes the correct pronunciation of the name much more obvious to new readers.
 If you are talking about the website itself, such as on the website itself, it is acceptable to call the website "Crehdatin" or "Creh-Datin".
 But, "Crehdatin" is probably more used because it is easier to type.
@@ -11,13 +11,13 @@ But, "Crehdatin" is probably more used because it is easier to type.
 
 #Subdatin
 A subdatin is a specific section of the website. It has its own post listing, so a post posted in subdatin X will not appear, under any circumstances, in subdatin Y.
-They are very similiar to an imageboard's(such as 4chan, 8chan, or lainchan) boards or reddits different subreddits.
-Sometimes subdatins will just be referred to as "boards", and this is acceptable, but this is not official correct.
+They are very similiar to an imageboard's(such as 4chan, 8chan, or lainchan) boards or reddit's different subreddits.
+Sometimes subdatins will just be referred to as "boards", and this is acceptable, but this is not officially correct.
 
 "subdatin" is the official name used in the code.
 
 ###User Positions
-User Positions, or user "ranks" or user "roles", are specific roles that come with increased power that can be granted to specific users.
+User Positions, or user "ranks" or "roles", are specific roles that come with increased power that can be granted to specific users.
 
 ##Global Positions
 Global positions, or "site-wide positions", are user positions that span the entire site.
@@ -44,7 +44,7 @@ A moderator of subdatin X will show up with an [M] in subdatin X, but will not s
 They only have power where they were given the title.
 
 #Bureaucrat
-A Bureaucrat, or "bur" for short, is a user that outranks moderators. It is the higher local position obtainable.
+A Bureaucrat, or "bur" for short, is a user that outranks moderators. It is the highest local position obtainable.
 They are tasked with maintaining a subdatin, including the moderators that are a part of it.
 They can add or remove moderators and other bureaucrats in their subdatin.
 They can also do subdatin wide things like locking all posts and locking all comments.
