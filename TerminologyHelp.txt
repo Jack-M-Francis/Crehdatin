@@ -55,7 +55,7 @@ They must also settle any disagreements between the mods of their subdatin and k
 "bureaucrat" is the offical name used in the code.
 
 #Moderators
-A Moderators, or "mod" for short, is a user that is tasks with carrying out the rules supplied to them by the site-wide administration and the bureaucrat(s) of their subdatin.
+A Moderator, or "mod" for short, is a user that is tasks with carrying out the rules supplied to them by the site-wide administration and the bureaucrat(s) of their subdatin.
 They will delete offending content, answer reports given to them by the users of their subdatin, settle any user disagreements, help the users of their subdatin,
  and interpret the rules of the subdatin, using the guide of their bureaucrat(s), to answer any questions users may have about them.
  
